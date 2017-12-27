@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+                <!-- DsoModelfile  -->
+                <edmx:Reference Uri="productSales.xsodata/$metadata">
+                                <edmx:Include Namespace="salesmapAPF1d2.webapp.services" Alias="DsoModel" />
+                </edmx:Reference>
+                <!-- Standard Vocabulary OData -->
+                <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Capabilities.V1.xml">
+                                <edmx:Include Alias="Capabilities" Namespace="Org.OData.Core.V1" />
+                </edmx:Reference>
+                <!-- Standard Vocabulary OData for Measures -->
+                <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+                                <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures" />
+                </edmx:Reference>
+                <!-- SAP Vocabulary -->
+                <edmx:Reference Uri="common.xml">
+                                <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SapCommon" />
+                </edmx:Reference>
+                <!-- SAP WCA Vocabulary -->
+                <edmx:Reference Uri="vocabulary.xml">
+                                <edmx:Include Alias="Wca" Namespace="salesmapAPF1d2.webapp.services" />
+                </edmx:Reference>
+                <!-- Annotations Schema -->
+                <edmx:DataServices>
+                                <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="salesmapAPF1d2.webapp.services" Alias="WcaDso">
+                                                <!-- Annotations DsoModel.BPSummaryType -->
+                                                <Annotations Target="DsoModel.BPSummaryType/LEGALFORM">
+                                                                <Annotation Term="Wca.DefaultValue" String="CORP"/>
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.BPSummaryType/PARTNERID">
+                                                                <Annotation Term="Wca.DefaultValue" String="0000000000" />
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.BPSummaryType/COMPANYNAME">
+                                                                <Annotation Term=Term="Wca.DefaultValue" String="ABC" />
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.BPSummaryType/CURRENCY">
+                                                                <Annotation Term="Measures.ISOCurrency" Path="DisplayCurrency" />
+                                                                <Annotation Term="Measure.Scale" Path="DisplayCurrencyDecimals" />
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.BPSummaryType/GROSSAMOUNT">
+                                                                <Annotation Term="Wca.DefaultValue" Int="10" />
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.BPSummaryType/COUNTRY">
+                                                                <Annotation Term="Wca.DefaultValue" String="US" />
+                                                </Annotations>
+                                                <!-- Annotations DsoModel.NewBPSalesByYearType -->
+                                                <Annotations Target="DsoModel.NewBPSalesByYearType/LEGALFORM">
+                                                                <Annotation Term="Wca.DefaultValue" String="CORP"/>
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.NewBPSalesByYearType/COMPANYNAME">
+                                                                 <Annotation Term=Term="Wca.DefaultValue" String="ABC" />
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.NewBPSalesByYearType/GROSSAMOUNT">
+                                                                <Annotation Term="Wca.DefaultValue" Int="10"/>
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.NewBPSalesByYearType/COUNTRY">
+                                                                <Annotation Term="Wca.DefaultValue" String="US" />
+                                                </Annotations>
+                                                <Annotations Target="DsoModel.NewBPSalesByYearType/YEAR_OF_SALE">
+                                                                <Annotation Term="SapCommon.IsCalendarDate" />
+                                                </Annotations>
+                                                <!-- DsoModel.CompanyCodeQueryResultsType -->
+                                                <Annotations Target="DsoModel.CompanyCodeQueryResultsType">
+                                                                <Annotation Term="Capabilities.RequiresFilter" Bool="true" />
+                                                                <Annotation Term="Capabilities.RequiredProperties" Path="SAPClient" />
+                                                </Annotations>
+                                </Schema>
+                </edmx:DataServices>
+</edmx:Edmx>

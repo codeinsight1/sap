@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="BP_ADDRESS_DETAILS" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="BP_ADDRESS_DETAILS_2"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="35"/>
+  <dataSources>
+    <DataSource id="BusinessPartner" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/salesmapAPF1d2.webapp.models/calculationviews/BusinessPartner</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="PHONENUMBER"/>
+        <viewAttribute id="FAXNUMBER"/>
+        <viewAttribute id="EMAILADDRESS"/>
+        <viewAttribute id="WEBADDRESS"/>
+        <viewAttribute id="LATITUDE"/>
+        <viewAttribute id="LONGITUDE"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="CityName"/>
+        <viewAttribute id="PostalCode"/>
+        <viewAttribute id="StreetName"/>
+        <viewAttribute id="Building"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="Region"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#BusinessPartner">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHONENUMBER" source="PHONENUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAXNUMBER" source="FAXNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAILADDRESS" source="EMAILADDRESS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBADDRESS" source="WEBADDRESS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CityName" source="CityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PostalCode" source="PostalCode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="StreetName" source="StreetName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Building" source="Building"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="ADDRESSID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AddressID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="AddressID"/>
+      </attribute>
+      <attribute id="CITY" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CityName"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CityName"/>
+      </attribute>
+      <attribute id="POSTALCODE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PostalCode"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PostalCode"/>
+      </attribute>
+      <attribute id="STREET" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="StreetName"/>
+        <keyMapping columnObjectName="Projection_1" columnName="StreetName"/>
+      </attribute>
+      <attribute id="BUILDING" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Building"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Building"/>
+      </attribute>
+      <attribute id="COUNTRY" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Country"/>
+      </attribute>
+      <attribute id="REGION" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Region"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Region"/>
+      </attribute>
+      <attribute id="LATITUDE" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Geo location latitude"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LATITUDE"/>
+      </attribute>
+      <attribute id="LONGITUDE" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Geo location longitude"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LONGITUDE"/>
+      </attribute>
+      <attribute id="PARTNERID" key="true" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartner"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BusinessPartner"/>
+      </attribute>
+      <attribute id="EMAILADDRESS" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Email Address"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EMAILADDRESS"/>
+      </attribute>
+      <attribute id="PHONENUMBER" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Phone Number"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PHONENUMBER"/>
+      </attribute>
+      <attribute id="FAXNUMBER" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fax Number"/>
+        <keyMapping columnObjectName="Projection_1" columnName="FAXNUMBER"/>
+      </attribute>
+      <attribute id="WEBADDRESS" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Web Address"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WEBADDRESS"/>
+      </attribute>
+      <attribute id="COMPANYNAME" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartnerFullName"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BusinessPartnerFullName"/>
+      </attribute>
+      <attribute id="LEGALFORM" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEGAL_ENTY"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LEGAL_ENTY"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="210"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

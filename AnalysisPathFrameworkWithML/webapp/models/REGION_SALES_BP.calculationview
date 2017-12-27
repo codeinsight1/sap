@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="REGION_SALES_BP" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="REGION_SALES_BP_2"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="39"/>
+  <dataSources>
+    <DataSource id="SalesOrderHeader" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/SalesOrderHeader</resourceUri>
+    </DataSource>
+    <DataSource id="VBAP_COM" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/VBAP_COM</resourceUri>
+    </DataSource>
+    <DataSource id="BP_ADDRESS_DETAILS" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/salesmapAPF1d2.webapp.models/calculationviews/BP_ADDRESS_DETAILS</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SalesOrder"/>
+        <viewAttribute id="TransactionCurrency"/>
+        <viewAttribute id="CreationDate"/>
+        <viewAttribute id="TotalNetAmount"/>
+        <viewAttribute id="SoldToParty"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#SalesOrderHeader">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrder" source="SalesOrder"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TotalNetAmount" source="TotalNetAmount"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SoldToParty" source="SoldToParty"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TaxAmount"/>
+        <viewAttribute id="TotalNetAmount"/>
+        <viewAttribute id="CreationDate"/>
+        <viewAttribute id="TransactionCurrency"/>
+        <viewAttribute id="SalesOrder"/>
+        <viewAttribute id="SoldToParty"/>
+        <viewAttribute id="NetAmount"/>
+        <viewAttribute hidden="true" id="JOIN$SalesDocument$SalesOrder"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#VBAP_COM">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TaxAmount" source="TaxAmount"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SalesDocument$SalesOrder" source="SalesDocument"/>
+      </input>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TotalNetAmount" source="TotalNetAmount"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrder" source="SalesOrder"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SoldToParty" source="SoldToParty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SalesDocument$SalesOrder" source="SalesOrder"/>
+      </input>
+      <joinAttribute name="JOIN$SalesDocument$SalesOrder"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="COUNTRY"/>
+        <viewAttribute id="COUNTRY_1"/>
+        <viewAttribute id="ADDRESSID"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="POSTALCODE"/>
+        <viewAttribute id="STREET"/>
+        <viewAttribute id="BUILDING"/>
+        <viewAttribute id="REGION"/>
+        <viewAttribute id="LATITUDE"/>
+        <viewAttribute id="EMAILADDRESS"/>
+        <viewAttribute id="LONGITUDE"/>
+        <viewAttribute id="PHONENUMBER"/>
+        <viewAttribute id="FAXNUMBER"/>
+        <viewAttribute id="LEGALFORM"/>
+        <viewAttribute id="TaxAmount"/>
+        <viewAttribute id="TotalNetAmount"/>
+        <viewAttribute id="CreationDate"/>
+        <viewAttribute id="TransactionCurrency"/>
+        <viewAttribute id="SalesOrder"/>
+        <viewAttribute id="PARTNERID"/>
+        <viewAttribute id="WEBADDRESS"/>
+        <viewAttribute id="COMPANYNAME"/>
+        <viewAttribute id="NetAmount"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="VARCHAR" id="YEAR_OF_SALE" length="10" expressionLanguage="COLUMN_ENGINE">
+          <formula>midstr(string(&quot;CreationDate&quot;), 0 , 4)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#BP_ADDRESS_DETAILS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY_1" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRESSID" source="ADDRESSID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POSTALCODE" source="POSTALCODE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STREET" source="STREET"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAILADDRESS" source="EMAILADDRESS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHONENUMBER" source="PHONENUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAXNUMBER" source="FAXNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGALFORM" source="LEGALFORM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PARTNERID" source="PARTNERID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBADDRESS" source="WEBADDRESS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMPANYNAME" source="COMPANYNAME"/>
+      </input>
+      <input node="#Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TaxAmount" source="TaxAmount"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TotalNetAmount" source="TotalNetAmount"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrder" source="SalesOrder"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PARTNERID" source="SoldToParty"/>
+      </input>
+      <joinAttribute name="PARTNERID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="YEAR_OF_SALE" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR_OF_SALE"/>
+        <keyMapping columnObjectName="Join_1" columnName="YEAR_OF_SALE"/>
+      </attribute>
+      <attribute id="GROSSAMOUNT" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Total Net Amount"/>
+        <keyMapping columnObjectName="Join_1" columnName="TotalNetAmount"/>
+      </attribute>
+      <attribute id="NETAMOUNT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Net Amount"/>
+        <keyMapping columnObjectName="Join_1" columnName="NetAmount"/>
+      </attribute>
+      <attribute id="TAXAMOUNT" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tax Amount"/>
+        <keyMapping columnObjectName="Join_1" columnName="TaxAmount"/>
+      </attribute>
+      <attribute id="CURRENCY" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Transaction Currency"/>
+        <keyMapping columnObjectName="Join_1" columnName="TransactionCurrency"/>
+      </attribute>
+      <attribute id="SALESORDERID" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Order"/>
+        <keyMapping columnObjectName="Join_1" columnName="SalesOrder"/>
+      </attribute>
+      <attribute id="HISTORY_CREATEDAT" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Creation Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="CreationDate"/>
+      </attribute>
+      <attribute id="PARTNERID" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PARTNERID"/>
+        <keyMapping columnObjectName="Join_1" columnName="PARTNERID"/>
+      </attribute>
+      <attribute id="COMPANYNAME" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COMPANYNAME"/>
+        <keyMapping columnObjectName="Join_1" columnName="COMPANYNAME"/>
+      </attribute>
+      <attribute id="LEGALFORM" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEGALFORM"/>
+        <keyMapping columnObjectName="Join_1" columnName="LEGALFORM"/>
+      </attribute>
+      <attribute id="LATITUDE" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LATITUDE"/>
+        <keyMapping columnObjectName="Join_1" columnName="LATITUDE"/>
+      </attribute>
+      <attribute id="LONGITUDE" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LONGITUDE"/>
+        <keyMapping columnObjectName="Join_1" columnName="LONGITUDE"/>
+      </attribute>
+      <attribute id="EMAILADDRESS" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EMAILADDRESS"/>
+        <keyMapping columnObjectName="Join_1" columnName="EMAILADDRESS"/>
+      </attribute>
+      <attribute id="PHONENUMBER" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PHONENUMBER"/>
+        <keyMapping columnObjectName="Join_1" columnName="PHONENUMBER"/>
+      </attribute>
+      <attribute id="WEBADDRESS" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEBADDRESS"/>
+        <keyMapping columnObjectName="Join_1" columnName="WEBADDRESS"/>
+      </attribute>
+      <attribute id="FAXNUMBER" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FAXNUMBER"/>
+        <keyMapping columnObjectName="Join_1" columnName="FAXNUMBER"/>
+      </attribute>
+      <attribute id="BUILDING" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BUILDING"/>
+        <keyMapping columnObjectName="Join_1" columnName="BUILDING"/>
+      </attribute>
+      <attribute id="STREET" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STREET"/>
+        <keyMapping columnObjectName="Join_1" columnName="STREET"/>
+      </attribute>
+      <attribute id="POSTALCODE" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="POSTALCODE"/>
+        <keyMapping columnObjectName="Join_1" columnName="POSTALCODE"/>
+      </attribute>
+      <attribute id="CITY" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CITY"/>
+        <keyMapping columnObjectName="Join_1" columnName="CITY"/>
+      </attribute>
+      <attribute id="REGION" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="REGION"/>
+        <keyMapping columnObjectName="Join_1" columnName="REGION"/>
+      </attribute>
+      <attribute id="COUNTRY" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COUNTRY"/>
+        <keyMapping columnObjectName="Join_1" columnName="COUNTRY"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="30" y="450"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="30" y="340"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="210"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

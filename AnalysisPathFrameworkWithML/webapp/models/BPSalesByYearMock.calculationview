@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="BPSalesByYearMock" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="BPSalesByYearMock"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="REGION_SALES_BP_AGGR" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/salesmapAPF1d2.webapp.models/calculationviews/REGION_SALES_BP_AGGR</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews/>
+  <logicalModel id="REGION_SALES_BP_AGGR">
+    <descriptions/>
+    <attributes>
+      <attribute id="LEGALFORM" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEGALFORM"/>
+        <keyMapping columnObjectName="REGION_SALES_BP_AGGR" columnName="LEGALFORM"/>
+      </attribute>
+      <attribute id="PARTNERID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PARTNERID"/>
+        <keyMapping columnObjectName="REGION_SALES_BP_AGGR" columnName="PARTNERID"/>
+      </attribute>
+      <attribute id="COMPANYNAME" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COMPANYNAME"/>
+        <keyMapping columnObjectName="REGION_SALES_BP_AGGR" columnName="COMPANYNAME"/>
+      </attribute>
+      <attribute id="CURRENCY" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CURRENCY"/>
+        <keyMapping columnObjectName="REGION_SALES_BP_AGGR" columnName="CURRENCY"/>
+      </attribute>
+      <attribute id="GROSSAMOUNT" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GROSSAMOUNT"/>
+        <keyMapping columnObjectName="REGION_SALES_BP_AGGR" columnName="GROSSAMOUNT"/>
+      </attribute>
+      <attribute id="COUNTRY" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COUNTRY"/>
+        <keyMapping columnObjectName="REGION_SALES_BP_AGGR" columnName="COUNTRY"/>
+      </attribute>
+      <attribute id="YEAR_OF_SALE" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR_OF_SALE"/>
+        <keyMapping columnObjectName="REGION_SALES_BP_AGGR" columnName="YEAR_OF_SALE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="CompanyCode" hidden="false" order="8" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CompanyCode"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="4">
+          <formula>rightstr(&quot;PARTNERID&quot;,4)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

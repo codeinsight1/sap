@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="ADDRESS_2" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="ADDRESS_2"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="57"/>
+  <dataSources>
+    <DataSource id="ADRC" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="ADRC"/>
+    </DataSource>
+    <DataSource id="CountryName_1" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/CountryName</resourceUri>
+    </DataSource>
+    <DataSource id="RegionName_1" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/RegionName</resourceUri>
+    </DataSource>
+    <DataSource id="GEOLOC" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="GEOLOC"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CLIENT"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="NAME2"/>
+        <viewAttribute id="CITY1"/>
+        <viewAttribute id="CITY2"/>
+        <viewAttribute id="HOME_CITY"/>
+        <viewAttribute id="POST_CODE1"/>
+        <viewAttribute id="STREET"/>
+        <viewAttribute id="HOUSE_NUM1"/>
+        <viewAttribute id="HOUSE_NUM2"/>
+        <viewAttribute id="BUILDING"/>
+        <viewAttribute id="FLOOR"/>
+        <viewAttribute id="ROOMNUMBER"/>
+        <viewAttribute id="COUNTRY"/>
+        <viewAttribute id="REGION"/>
+        <viewAttribute id="PERS_ADDR"/>
+        <viewAttribute id="DATE_FROM"/>
+        <viewAttribute id="DATE_TO"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ADRC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME2" source="NAME2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY1" source="CITY1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY2" source="CITY2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOME_CITY" source="HOME_CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POST_CODE1" source="POST_CODE1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STREET" source="STREET"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOUSE_NUM1" source="HOUSE_NUM1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOUSE_NUM2" source="HOUSE_NUM2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLOOR" source="FLOOR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ROOMNUMBER" source="ROOMNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERS_ADDR" source="PERS_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_FROM" source="DATE_FROM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_TO" source="DATE_TO"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CLIENT"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="NAME2"/>
+        <viewAttribute id="CITY1"/>
+        <viewAttribute id="CITY2"/>
+        <viewAttribute id="HOME_CITY"/>
+        <viewAttribute id="POST_CODE1"/>
+        <viewAttribute id="STREET"/>
+        <viewAttribute id="HOUSE_NUM1"/>
+        <viewAttribute id="HOUSE_NUM2"/>
+        <viewAttribute id="BUILDING"/>
+        <viewAttribute id="FLOOR"/>
+        <viewAttribute id="ROOMNUMBER"/>
+        <viewAttribute id="COUNTRY"/>
+        <viewAttribute id="REGION"/>
+        <viewAttribute id="PERS_ADDR"/>
+        <viewAttribute id="DATE_FROM"/>
+        <viewAttribute id="DATE_TO"/>
+        <viewAttribute id="CountryName"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME2" source="NAME2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY1" source="CITY1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY2" source="CITY2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOME_CITY" source="HOME_CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POST_CODE1" source="POST_CODE1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STREET" source="STREET"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOUSE_NUM1" source="HOUSE_NUM1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOUSE_NUM2" source="HOUSE_NUM2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLOOR" source="FLOOR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ROOMNUMBER" source="ROOMNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERS_ADDR" source="PERS_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_FROM" source="DATE_FROM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_TO" source="DATE_TO"/>
+      </input>
+      <input node="#CountryName_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="Country"/>
+      </input>
+      <joinAttribute name="CLIENT"/>
+      <joinAttribute name="COUNTRY"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CLIENT"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="NAME2"/>
+        <viewAttribute id="CITY1"/>
+        <viewAttribute id="CITY2"/>
+        <viewAttribute id="HOME_CITY"/>
+        <viewAttribute id="POST_CODE1"/>
+        <viewAttribute id="STREET"/>
+        <viewAttribute id="HOUSE_NUM1"/>
+        <viewAttribute id="HOUSE_NUM2"/>
+        <viewAttribute id="BUILDING"/>
+        <viewAttribute id="FLOOR"/>
+        <viewAttribute id="ROOMNUMBER"/>
+        <viewAttribute id="COUNTRY"/>
+        <viewAttribute id="REGION"/>
+        <viewAttribute id="PERS_ADDR"/>
+        <viewAttribute id="DATE_FROM"/>
+        <viewAttribute id="DATE_TO"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME2" source="NAME2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY1" source="CITY1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY2" source="CITY2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOME_CITY" source="HOME_CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POST_CODE1" source="POST_CODE1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STREET" source="STREET"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOUSE_NUM1" source="HOUSE_NUM1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOUSE_NUM2" source="HOUSE_NUM2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLOOR" source="FLOOR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ROOMNUMBER" source="ROOMNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERS_ADDR" source="PERS_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_FROM" source="DATE_FROM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_TO" source="DATE_TO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+      </input>
+      <input node="#RegionName_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="Region"/>
+      </input>
+      <joinAttribute name="CLIENT"/>
+      <joinAttribute name="REGION"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="LONGITUDE"/>
+        <viewAttribute id="LATITUDE"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="CLIENT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#GEOLOC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CLIENT"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="NAME2"/>
+        <viewAttribute id="CITY1"/>
+        <viewAttribute id="CITY2"/>
+        <viewAttribute id="HOME_CITY"/>
+        <viewAttribute id="POST_CODE1"/>
+        <viewAttribute id="STREET"/>
+        <viewAttribute id="HOUSE_NUM1"/>
+        <viewAttribute id="HOUSE_NUM2"/>
+        <viewAttribute id="BUILDING"/>
+        <viewAttribute id="FLOOR"/>
+        <viewAttribute id="ROOMNUMBER"/>
+        <viewAttribute id="COUNTRY"/>
+        <viewAttribute id="REGION"/>
+        <viewAttribute id="PERS_ADDR"/>
+        <viewAttribute id="DATE_FROM"/>
+        <viewAttribute id="DATE_TO"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+        <viewAttribute id="LONGITUDE"/>
+        <viewAttribute id="LATITUDE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME2" source="NAME2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY1" source="CITY1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY2" source="CITY2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOME_CITY" source="HOME_CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POST_CODE1" source="POST_CODE1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STREET" source="STREET"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOUSE_NUM1" source="HOUSE_NUM1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOUSE_NUM2" source="HOUSE_NUM2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLOOR" source="FLOOR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ROOMNUMBER" source="ROOMNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERS_ADDR" source="PERS_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_FROM" source="DATE_FROM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_TO" source="DATE_TO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+      </input>
+      <joinAttribute name="CLIENT"/>
+      <joinAttribute name="ADDRNUMBER"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_3">
+    <descriptions/>
+    <attributes>
+      <attribute id="CLIENT" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CLIENT"/>
+        <keyMapping columnObjectName="Join_3" columnName="CLIENT"/>
+      </attribute>
+      <attribute id="AddressID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Address ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="ADDRNUMBER"/>
+      </attribute>
+      <attribute id="Name" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="NAME1"/>
+      </attribute>
+      <attribute id="AdditionalName" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Additional Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="NAME2"/>
+      </attribute>
+      <attribute id="CityName" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="CITY1"/>
+      </attribute>
+      <attribute id="District" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="District"/>
+        <keyMapping columnObjectName="Join_3" columnName="CITY2"/>
+      </attribute>
+      <attribute id="HomeCityName" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Home City Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="HOME_CITY"/>
+      </attribute>
+      <attribute id="PostalCode" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Postal Code"/>
+        <keyMapping columnObjectName="Join_3" columnName="POST_CODE1"/>
+      </attribute>
+      <attribute id="StreetName" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Street Number"/>
+        <keyMapping columnObjectName="Join_3" columnName="STREET"/>
+      </attribute>
+      <attribute id="HouseNumber" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="House Number"/>
+        <keyMapping columnObjectName="Join_3" columnName="HOUSE_NUM1"/>
+      </attribute>
+      <attribute id="HouseNumberSupplement" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="House Number Supplement"/>
+        <keyMapping columnObjectName="Join_3" columnName="HOUSE_NUM2"/>
+      </attribute>
+      <attribute id="Building" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Building"/>
+        <keyMapping columnObjectName="Join_3" columnName="BUILDING"/>
+      </attribute>
+      <attribute id="Floor" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Floor"/>
+        <keyMapping columnObjectName="Join_3" columnName="FLOOR"/>
+      </attribute>
+      <attribute id="RoomNumber" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Room Number"/>
+        <keyMapping columnObjectName="Join_3" columnName="ROOMNUMBER"/>
+      </attribute>
+      <attribute id="Country" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country"/>
+        <keyMapping columnObjectName="Join_3" columnName="COUNTRY"/>
+      </attribute>
+      <attribute id="Region" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Region"/>
+        <keyMapping columnObjectName="Join_3" columnName="REGION"/>
+      </attribute>
+      <attribute id="IsPersonalAddress" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Is Personal Address"/>
+        <keyMapping columnObjectName="Join_3" columnName="PERS_ADDR"/>
+      </attribute>
+      <attribute id="ValidStartDate" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ValidStartDate"/>
+        <keyMapping columnObjectName="Join_3" columnName="DATE_FROM"/>
+      </attribute>
+      <attribute id="ValidEndDate" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ValidEndDate"/>
+        <keyMapping columnObjectName="Join_3" columnName="DATE_TO"/>
+      </attribute>
+      <attribute id="CountryName" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CountryName"/>
+        <keyMapping columnObjectName="Join_3" columnName="CountryName"/>
+      </attribute>
+      <attribute id="RegionName" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RegionName"/>
+        <keyMapping columnObjectName="Join_3" columnName="RegionName"/>
+      </attribute>
+      <attribute id="LONGITUDE" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Geo location longitude"/>
+        <keyMapping columnObjectName="Join_3" columnName="LONGITUDE"/>
+      </attribute>
+      <attribute id="LATITUDE" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Geo location latitude"/>
+        <keyMapping columnObjectName="Join_3" columnName="LATITUDE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="50" y="530"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="50" y="440"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="50" y="270"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="240" y="285"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="150" y="180"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

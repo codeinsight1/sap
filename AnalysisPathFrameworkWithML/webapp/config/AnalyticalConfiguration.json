@@ -1,0 +1,349 @@
+{
+  "applicationTitle": {
+    "type": "label",
+    "kind": "text",
+    "key": "54DD79F364A10518E10000000A445B6D"
+  },
+  "steps": [
+    {
+      "type": "step",
+      "description": "Total Sales by All Business Partners",
+      "request": "request-for-Step-1",
+      "binding": "binding-for-Step-1",
+      "id": "Step-1",
+      "title": {
+        "type": "label",
+        "kind": "text",
+        "key": "54DD79B564A10518E10000000A445B6D"
+      },
+      "longTitle": {
+        "type": "label",
+        "kind": "text",
+        "key": "54DD79B964A10518E10000000A445B6D"
+      },
+      "thumbnail": {
+        "type": "thumbnail",
+        "leftUpper": {
+          "type": "label",
+          "kind": "text",
+          "key": "54DD79BD64A10518E10000000A445B6D"
+        },
+        "leftLower": {
+          "type": "label",
+          "kind": "text",
+          "key": "54DD796564A10518E10000000A445B6D"
+        },
+        "rightUpper": {
+          "type": "label",
+          "kind": "text",
+          "key": "54DD796564A10518E10000000A445B6D"
+        },
+        "rightLower": {
+          "type": "label",
+          "kind": "text",
+          "key": "54DD79A164A10518E10000000A445B6D"
+        }
+      }
+    },
+    {
+      "type": "step",
+      "description": "Sales per Business Partner",
+      "request": "request-for-Step-2",
+      "binding": "binding-for-Step-2",
+      "id": "Step-2",
+      "title": {
+        "type": "label",
+        "kind": "text",
+        "key": "54DD795964A10518E10000000A445B6D"
+      },
+      "filterMapping": {
+        "requestForMappedFilter": "request-for-FilterMappingStep-2",
+        "target": [
+          "CustomerCountry"
+        ],
+        "keepSource": "false"
+      },
+      "longTitle": {
+        "type": "label",
+        "kind": "text",
+        "key": "54DD795D64A10518E10000000A445B6D"
+      },
+      "thumbnail": {
+        "type": "thumbnail",
+        "leftUpper": {
+          "type": "label",
+          "kind": "text",
+          "key": "54DD796164A10518E10000000A445B6D"
+        },
+        "leftLower": {
+          "type": "label",
+          "kind": "text",
+          "key": "54DD796564A10518E10000000A445B6D"
+        },
+        "rightUpper": {
+          "type": "label",
+          "kind": "text",
+          "key": "54DD796564A10518E10000000A445B6D"
+        },
+        "rightLower": {
+          "type": "label",
+          "kind": "text",
+          "key": "54DD796964A10518E10000000A445B6D"
+        }
+      }
+    }
+  ],
+  "requests": [
+    {
+      "type": "request",
+      "id": "request-for-Step-1",
+      "service": "/salesmapAPF1d2/webapp/services/productSales.xsodata",
+      "entitySet": "BPSummary",
+      "selectProperties": [
+        "GROSSAMOUNT",
+        "PARTNERID"
+      ]
+    },
+    {
+      "type": "request",
+      "id": "request-for-Step-2",
+      "service": "/salesmapAPF1d2/webapp/services/productSales.xsodata",
+      "entitySet": "NewBPSalesByYear",
+      "selectProperties": [   
+        "GROSSAMOUNT",
+        "YEAR_OF_SALE"
+      ]
+    },
+    {
+      "type": "request",
+      "id": "FilterResolution-request-for-FacetFilter-3",
+      "service": "/salesmapAPF1d2/webapp/services/productSales.xsodata",
+      "entitySet": "CompanyCodeQuery",
+      "selectProperties": [
+        "CompanyCode",
+        "CompanyCodeName"
+      ]
+    },
+    {
+      "type": "request",
+      "id": "ValueHelp-request-for-FacetFilter-3",
+      "service": "/salesmapAPF1d2/webapp/services/productSales.xsodata",
+      "entitySet": "CompanyCodeQuery",
+      "selectProperties": [
+        "CompanyCode",
+        "CompanyCodeName"
+      ]
+    }
+  ],
+  "representationTypes": [
+    {
+      "type": "representationType",
+      "id": "BarChart",
+      "constructor": "salesmapAPF1d2.representation.barChart",
+      "picture": "sap-icon://horizontal-bar-chart",
+      "label": {
+        "type": "label",
+        "kind": "text",
+        "key": "barChart"
+      }
+    },
+    {
+      "type": "representationType",
+      "id": "StackedBarChart",
+      "constructor": "salesmapAPF1d2.representation.stackedBarChart",
+      "picture": "sap-icon://horizontal-stacked-chart",
+      "label": {
+        "type": "label",
+        "kind": "text",
+        "key": "StackedBarChart"
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "type": "binding",
+      "id": "binding-for-Step-1",
+      "stepDescription": "Revenue and Receivables over Time",
+      "requiredFilters": [],
+      "representations": [
+        {
+          "id": "Step-1-Representation-1",
+          "representationTypeId": "BarChart",
+          "parameter": {
+            "dimensions": [
+              {
+                "fieldName": "PARTNERID",
+                "fieldDesc": {
+                  "type": "label",
+                  "kind": "text",
+                  "key": "54DD79A164A10518E10000000A445B6D"
+                }
+              }
+            ],
+            "measures": [
+              {
+                "fieldName": "GROSSAMOUNT",
+                "fieldDesc": {
+                  "type": "label",
+                  "kind": "text",
+                  "key": "54DD797564A10518E10000000A445B6D"
+                }
+              }
+            ],
+            "alternateRepresentationTypeId": "TableRepresentation",
+            "width": {}
+          }
+        },
+        {
+          "id": "Step-1-Representation-2",
+          "representationTypeId": "ColumnChart",
+          "parameter": {
+            "dimensions": [
+              {
+                "fieldName": "PARTNERID",
+                "fieldDesc": {
+                  "type": "label",
+                  "kind": "text",
+                  "key": "54DD79A164A10518E10000000A445B6D"
+                }
+              }
+            ],
+            "measures": [
+              {
+                "fieldName": "GROSSAMOUNT",
+                "fieldDesc": {
+                  "type": "label",
+                  "kind": "text",
+                  "key": "54DD797564A10518E10000000A445B6D"
+                }
+              }
+            ],
+            "alternateRepresentationTypeId": "TableRepresentation",
+            "width": {}
+          }
+        },
+        {
+          "id": "Step-1-Representation-3",
+          "representationTypeId": "ColumnChart",
+          "parameter": {
+            "dimensions": [
+              {
+                "fieldName": "PARTNERID",
+                "fieldDesc": {
+                  "type": "label",
+                  "kind": "text",
+                  "key": "54DD79A164A10518E10000000A445B6D"
+                }
+              }
+            ],
+            "measures": [
+              {
+                "fieldName": "GROSSAMOUNT",
+                "fieldDesc": {
+                  "type": "label",
+                  "kind": "text",
+                  "key": "54DD797564A10518E10000000A445B6D"
+                }
+              }
+            ],
+            "alternateRepresentationTypeId": "TableRepresentation",
+            "width": {},
+            "orderby": [
+              {
+                "property": "GROSSAMOUNT",
+                "ascending": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "binding",
+      "id": "binding-for-Step-2",
+      "stepDescription": "Receivables and Overdue Receivables by Customer",
+      "requiredFilters": [
+        "YEAR_OF_SALE"
+      ],
+      "representations": [
+        {
+          "id": "Step-2-Representation-1",
+          "representationTypeId": "LineChart",
+          "parameter": {
+            "dimensions": [
+              {
+                "fieldName": "YEAR_OF_SALE",
+                "fieldDesc": {
+                  "type": "label",
+                  "kind": "text",
+                  "key": "54DD796964A10518E10000000A445B6D"
+                }
+              }
+            ],
+            "measures": [
+              {
+                "fieldName": "GROSSAMOUNT",
+                "fieldDesc": {
+                  "type": "label",
+                  "kind": "text",
+                  "key": "54DD796164A10518E10000000A445B6D"
+                }
+              }
+            ],
+            "alternateRepresentationTypeId": "TableRepresentation",
+            "width": {}
+          }
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "type": "category",
+      "description": "Time",
+      "id": "Category-1",
+      "label": {
+        "type": "label",
+        "kind": "text",
+        "key": "54DD79D564A10518E10000000A445B6D"
+      },
+      "steps": [
+        {
+          "type": "step",
+          "id": "Step-1"
+        },
+         {
+          "type": "step",
+          "id": "Step-2"
+        }
+      ]
+    }
+  ],
+  "facetFilters": [
+   {
+      "type": "facetFilter",
+      "description": "Company Code",
+      "id": "FacetFilter-3",
+      "property": "CompanyCode",
+      "multiSelection": "true",
+      "label": {
+        "type": "label",
+        "kind": "text",
+        "key": "54DD79E964A10518E10000000A445B6D"
+      },
+      "filterResolutionRequest": "FilterResolution-request-for-FacetFilter-3",
+      "valueHelpRequest": "ValueHelp-request-for-FacetFilter-3"
+    }
+  ],
+  "navigationTargets": [],
+  "configHeader": {
+    "Application": "54DD795664A10518E10000000A445B6D",
+    "ApplicationName": "APF Demo Application",
+    "SemanticObject": "SBTestApp",
+    "AnalyticalConfiguration": "54DD79F764A10518E10000000A445B6D",
+    "AnalyticalConfigurationName": "APF Demo Application",
+    "UI5Version": "1.27.1-SNAPSHOT",
+    "CreationUTCDateTime": "/Date(1423809274738)/",
+    "LastChangeUTCDateTime": "/Date(1423809274738)/"
+  }
+}

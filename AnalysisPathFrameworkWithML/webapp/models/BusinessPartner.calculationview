@@ -1,0 +1,1727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="BusinessPartner" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Projection" runWithInvokerPrivileges="false">
+  <origin/>
+  <descriptions defaultDescription="Business partner details"/>
+  <defaultSchema schemaName="SAP_ECC"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="48"/>
+  <dataSources>
+    <DataSource id="BUT000" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="BUT000"/>
+    </DataSource>
+    <DataSource id="BusinessPartnerName" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/BusinessPartnerName</resourceUri>
+    </DataSource>
+    <DataSource id="BusinessPartnerCategoryName_1" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/BusinessPartnerCategoryName</resourceUri>
+    </DataSource>
+    <DataSource id="ContactPermissionName_1" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/ContactPermissionName</resourceUri>
+    </DataSource>
+    <DataSource id="BusinessPartnerAddressIndex" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/BusinessPartnerAddressIndex</resourceUri>
+    </DataSource>
+    <DataSource id="Address" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/Address</resourceUri>
+    </DataSource>
+    <DataSource id="ADR2" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="ADR2"/>
+    </DataSource>
+    <DataSource id="ADR3" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="ADR3"/>
+    </DataSource>
+    <DataSource id="ADR6" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="ADR6"/>
+    </DataSource>
+    <DataSource id="ADR12" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="ADR12"/>
+    </DataSource>
+    <DataSource id="ADDR_LATLON" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="DEV01" columnObjectName="ADDR_LATLON"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#BUT000">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="PARTNER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="PARTNER_GUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BPKIND"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BU_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BPEXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="CONTACT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="NOT_RELEASED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="XSEXM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="XSEXF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="NATPERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="VALID_FROM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="VALID_TO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+      </input>
+      <input node="#BusinessPartnerName">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+      </input>
+      <joinAttribute name="SAPClient"/>
+      <joinAttribute name="BusinessPartner"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="textTable" languageColumn="Language">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+      </input>
+      <input node="#BusinessPartnerCategoryName_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+      </input>
+      <joinAttribute name="BusinessPartnerCategory"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" joinType="textTable" languageColumn="Language">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+      </input>
+      <input node="#ContactPermissionName_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+      </input>
+      <joinAttribute name="ContactPermission"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="AddressUUID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#BusinessPartnerAddressIndex">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="C1_1" joinType="rightOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="AddressUUID"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+        <viewAttribute hidden="true" id="JOIN$SAPClient$SAPClient"/>
+        <viewAttribute hidden="true" id="JOIN$BusinessPartner$BusinessPartner"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SAPClient$SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$BusinessPartner$BusinessPartner" source="BusinessPartner"/>
+      </input>
+      <input node="#Join_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SAPClient$SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$BusinessPartner$BusinessPartner" source="BusinessPartner"/>
+      </input>
+      <joinAttribute name="JOIN$SAPClient$SAPClient"/>
+      <joinAttribute name="JOIN$BusinessPartner$BusinessPartner"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_5" cardinality="C1_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="AddressUUID"/>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="Name"/>
+        <viewAttribute id="AdditionalName"/>
+        <viewAttribute id="CityName"/>
+        <viewAttribute id="District"/>
+        <viewAttribute id="HomeCityName"/>
+        <viewAttribute id="PostalCode"/>
+        <viewAttribute id="StreetName"/>
+        <viewAttribute id="HouseNumber"/>
+        <viewAttribute id="HouseNumberSupplementText"/>
+        <viewAttribute id="Building"/>
+        <viewAttribute id="Floor"/>
+        <viewAttribute id="RoomNumber"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="IsPersonalAddress"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+        <viewAttribute hidden="true" id="JOIN$AddressID$AddressID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AddressID$AddressID" source="AddressID"/>
+      </input>
+      <input node="#Address">
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Name" source="Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AdditionalName" source="AdditionalName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CityName" source="CityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="District" source="District"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HomeCityName" source="HomeCityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PostalCode" source="PostalCode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="StreetName" source="StreetName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumber" source="HouseNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumberSupplementText" source="HouseNumberSupplementText"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Building" source="Building"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Floor" source="Floor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RoomNumber" source="RoomNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsPersonalAddress" source="IsPersonalAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AddressID$AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+      </input>
+      <joinAttribute name="JOIN$AddressID$AddressID"/>
+      <joinAttribute name="SAPClient"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TEL_NUMBER"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="CLIENT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ADR2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEL_NUMBER" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_6" cardinality="C1_1" joinType="rightOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TEL_NUMBER"/>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="AddressUUID"/>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="Name"/>
+        <viewAttribute id="AdditionalName"/>
+        <viewAttribute id="CityName"/>
+        <viewAttribute id="District"/>
+        <viewAttribute id="HomeCityName"/>
+        <viewAttribute id="PostalCode"/>
+        <viewAttribute id="StreetName"/>
+        <viewAttribute id="HouseNumber"/>
+        <viewAttribute id="HouseNumberSupplementText"/>
+        <viewAttribute id="Building"/>
+        <viewAttribute id="Floor"/>
+        <viewAttribute id="RoomNumber"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="IsPersonalAddress"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+        <viewAttribute hidden="true" id="JOIN$ADDRNUMBER$AddressID"/>
+        <viewAttribute hidden="true" id="JOIN$CLIENT$SAPClient"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEL_NUMBER" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLIENT$SAPClient" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$AddressID" source="ADDRNUMBER"/>
+      </input>
+      <input node="#Join_5">
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Name" source="Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AdditionalName" source="AdditionalName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CityName" source="CityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="District" source="District"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HomeCityName" source="HomeCityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PostalCode" source="PostalCode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="StreetName" source="StreetName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumber" source="HouseNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumberSupplementText" source="HouseNumberSupplementText"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Building" source="Building"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Floor" source="Floor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RoomNumber" source="RoomNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsPersonalAddress" source="IsPersonalAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLIENT$SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$AddressID" source="AddressID"/>
+      </input>
+      <joinAttribute name="JOIN$CLIENT$SAPClient"/>
+      <joinAttribute name="JOIN$ADDRNUMBER$AddressID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CLIENT"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="FAX_NUMBER"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ADR3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAX_NUMBER" source="FAX_NUMBER"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_7" cardinality="C1_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TEL_NUMBER"/>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="AddressUUID"/>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="FAX_NUMBER"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="Name"/>
+        <viewAttribute id="AdditionalName"/>
+        <viewAttribute id="CityName"/>
+        <viewAttribute id="District"/>
+        <viewAttribute id="HomeCityName"/>
+        <viewAttribute id="PostalCode"/>
+        <viewAttribute id="StreetName"/>
+        <viewAttribute id="HouseNumber"/>
+        <viewAttribute id="HouseNumberSupplementText"/>
+        <viewAttribute id="Building"/>
+        <viewAttribute id="Floor"/>
+        <viewAttribute id="RoomNumber"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="IsPersonalAddress"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEL_NUMBER" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Name" source="Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AdditionalName" source="AdditionalName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CityName" source="CityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="District" source="District"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HomeCityName" source="HomeCityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PostalCode" source="PostalCode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="StreetName" source="StreetName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumber" source="HouseNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumberSupplementText" source="HouseNumberSupplementText"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Building" source="Building"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Floor" source="Floor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RoomNumber" source="RoomNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsPersonalAddress" source="IsPersonalAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+      </input>
+      <input node="#Projection_5">
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAX_NUMBER" source="FAX_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="ADDRNUMBER"/>
+      </input>
+      <joinAttribute name="SAPClient"/>
+      <joinAttribute name="AddressID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SMTP_ADDR"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="CLIENT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ADR6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SMTP_ADDR" source="SMTP_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_8" cardinality="C1_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TEL_NUMBER"/>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="AddressUUID"/>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="FAX_NUMBER"/>
+        <viewAttribute id="SMTP_ADDR"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="Name"/>
+        <viewAttribute id="AdditionalName"/>
+        <viewAttribute id="CityName"/>
+        <viewAttribute id="District"/>
+        <viewAttribute id="HomeCityName"/>
+        <viewAttribute id="PostalCode"/>
+        <viewAttribute id="StreetName"/>
+        <viewAttribute id="HouseNumber"/>
+        <viewAttribute id="HouseNumberSupplementText"/>
+        <viewAttribute id="Building"/>
+        <viewAttribute id="Floor"/>
+        <viewAttribute id="RoomNumber"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="IsPersonalAddress"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_7">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEL_NUMBER" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAX_NUMBER" source="FAX_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Name" source="Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AdditionalName" source="AdditionalName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CityName" source="CityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="District" source="District"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HomeCityName" source="HomeCityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PostalCode" source="PostalCode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="StreetName" source="StreetName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumber" source="HouseNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumberSupplementText" source="HouseNumberSupplementText"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Building" source="Building"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Floor" source="Floor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RoomNumber" source="RoomNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsPersonalAddress" source="IsPersonalAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+      </input>
+      <input node="#Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SMTP_ADDR" source="SMTP_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="ADDRNUMBER"/>
+      </input>
+      <joinAttribute name="SAPClient"/>
+      <joinAttribute name="AddressID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_6">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CLIENT"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="URI_SRCH"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ADR12">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLIENT" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="URI_SRCH" source="URI_SRCH"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_9" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TEL_NUMBER"/>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="AddressUUID"/>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="FAX_NUMBER"/>
+        <viewAttribute id="SMTP_ADDR"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="Name"/>
+        <viewAttribute id="AdditionalName"/>
+        <viewAttribute id="CityName"/>
+        <viewAttribute id="District"/>
+        <viewAttribute id="HomeCityName"/>
+        <viewAttribute id="PostalCode"/>
+        <viewAttribute id="StreetName"/>
+        <viewAttribute id="HouseNumber"/>
+        <viewAttribute id="HouseNumberSupplementText"/>
+        <viewAttribute id="Building"/>
+        <viewAttribute id="Floor"/>
+        <viewAttribute id="RoomNumber"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="IsPersonalAddress"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+        <viewAttribute id="URI_SRCH"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_8">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEL_NUMBER" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAX_NUMBER" source="FAX_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SMTP_ADDR" source="SMTP_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Name" source="Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AdditionalName" source="AdditionalName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CityName" source="CityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="District" source="District"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HomeCityName" source="HomeCityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PostalCode" source="PostalCode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="StreetName" source="StreetName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumber" source="HouseNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumberSupplementText" source="HouseNumberSupplementText"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Building" source="Building"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Floor" source="Floor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RoomNumber" source="RoomNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsPersonalAddress" source="IsPersonalAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+      </input>
+      <input node="#Projection_6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="URI_SRCH" source="URI_SRCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="CLIENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="ADDRNUMBER"/>
+      </input>
+      <joinAttribute name="SAPClient"/>
+      <joinAttribute name="AddressID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_7">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="LATSTR"/>
+        <viewAttribute id="LONSTR"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="LATITUDE" length="15" scale="12" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(isnull(&quot;LATSTR&quot;),0,float(&quot;LATSTR&quot;))&#xD;
+</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="LONGITUDE" length="15" scale="12" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(isnull(&quot;LONSTR&quot;),0,float(&quot;LONSTR&quot;))</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="PADADDRNUM" length="10" expressionLanguage="COLUMN_ENGINE">
+          <formula>lpad(&quot;ADDRNUMBER&quot;, 10, '0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#ADDR_LATLON">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATSTR" source="LATSTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONSTR" source="LONSTR"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_10" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TEL_NUMBER"/>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="AddressUUID"/>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="FAX_NUMBER"/>
+        <viewAttribute id="SMTP_ADDR"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="Name"/>
+        <viewAttribute id="AdditionalName"/>
+        <viewAttribute id="CityName"/>
+        <viewAttribute id="District"/>
+        <viewAttribute id="HomeCityName"/>
+        <viewAttribute id="PostalCode"/>
+        <viewAttribute id="StreetName"/>
+        <viewAttribute id="HouseNumber"/>
+        <viewAttribute id="HouseNumberSupplementText"/>
+        <viewAttribute id="Building"/>
+        <viewAttribute id="Floor"/>
+        <viewAttribute id="RoomNumber"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="IsPersonalAddress"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+        <viewAttribute id="URI_SRCH"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+        <viewAttribute id="LATITUDE"/>
+        <viewAttribute id="LONGITUDE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_9">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEL_NUMBER" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAX_NUMBER" source="FAX_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SMTP_ADDR" source="SMTP_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Name" source="Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AdditionalName" source="AdditionalName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CityName" source="CityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="District" source="District"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HomeCityName" source="HomeCityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PostalCode" source="PostalCode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="StreetName" source="StreetName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumber" source="HouseNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumberSupplementText" source="HouseNumberSupplementText"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Building" source="Building"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Floor" source="Floor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RoomNumber" source="RoomNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsPersonalAddress" source="IsPersonalAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="URI_SRCH" source="URI_SRCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+      </input>
+      <input node="#Projection_7">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="PADADDRNUM"/>
+      </input>
+      <joinAttribute name="AddressID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TEL_NUMBER"/>
+        <viewAttribute id="IsStandardAddress"/>
+        <viewAttribute id="AddressUUID"/>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="BusinessPartner"/>
+        <viewAttribute id="BusinessPartnerUUID"/>
+        <viewAttribute id="BusinessPartnerType"/>
+        <viewAttribute id="BusinessPartnerGrouping"/>
+        <viewAttribute id="BusinessPartnerIDByExtSystem"/>
+        <viewAttribute id="BusinessPartnerCategory"/>
+        <viewAttribute id="BusinessPartnerCategoryName"/>
+        <viewAttribute id="BusinessPartnerFullName"/>
+        <viewAttribute id="ContactPermission"/>
+        <viewAttribute id="ContactPermissionName"/>
+        <viewAttribute id="IsNotReleased"/>
+        <viewAttribute id="IsMale"/>
+        <viewAttribute id="IsFemale"/>
+        <viewAttribute id="IsNaturalPerson"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="LastName"/>
+        <viewAttribute id="FirstName"/>
+        <viewAttribute id="OrganizationBPName1"/>
+        <viewAttribute id="OrganizationBPName2"/>
+        <viewAttribute id="OrganizationBPName3"/>
+        <viewAttribute id="OrganizationBPName4"/>
+        <viewAttribute id="GroupBusinessPartnerName1"/>
+        <viewAttribute id="GroupBusinessPartnerName2"/>
+        <viewAttribute id="AcademicTitle1"/>
+        <viewAttribute id="AcademicTitle1Name"/>
+        <viewAttribute id="AcademicTitle2"/>
+        <viewAttribute id="AcademicTitle2Name"/>
+        <viewAttribute id="AcademicTitleName"/>
+        <viewAttribute id="FamilyNamePrefix"/>
+        <viewAttribute id="FamilyNamePrefixName"/>
+        <viewAttribute id="FAX_NUMBER"/>
+        <viewAttribute id="SMTP_ADDR"/>
+        <viewAttribute id="AddressID"/>
+        <viewAttribute id="Name"/>
+        <viewAttribute id="AdditionalName"/>
+        <viewAttribute id="CityName"/>
+        <viewAttribute id="District"/>
+        <viewAttribute id="HomeCityName"/>
+        <viewAttribute id="PostalCode"/>
+        <viewAttribute id="StreetName"/>
+        <viewAttribute id="HouseNumber"/>
+        <viewAttribute id="HouseNumberSupplementText"/>
+        <viewAttribute id="Building"/>
+        <viewAttribute id="Floor"/>
+        <viewAttribute id="RoomNumber"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="IsPersonalAddress"/>
+        <viewAttribute id="CountryName"/>
+        <viewAttribute id="RegionName"/>
+        <viewAttribute id="URI_SRCH"/>
+        <viewAttribute id="LEGAL_ENTY"/>
+        <viewAttribute id="LATITUDE"/>
+        <viewAttribute id="LONGITUDE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_10">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEL_NUMBER" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsStandardAddress" source="IsStandardAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressUUID" source="AddressUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartner" source="BusinessPartner"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerUUID" source="BusinessPartnerUUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerType" source="BusinessPartnerType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerGrouping" source="BusinessPartnerGrouping"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerIDByExtSystem" source="BusinessPartnerIDByExtSystem"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategory" source="BusinessPartnerCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCategoryName" source="BusinessPartnerCategoryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerFullName" source="BusinessPartnerFullName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermission" source="ContactPermission"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ContactPermissionName" source="ContactPermissionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNotReleased" source="IsNotReleased"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsMale" source="IsMale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsFemale" source="IsFemale"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsNaturalPerson" source="IsNaturalPerson"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName1" source="OrganizationBPName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName2" source="OrganizationBPName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName3" source="OrganizationBPName3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OrganizationBPName4" source="OrganizationBPName4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName1" source="GroupBusinessPartnerName1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GroupBusinessPartnerName2" source="GroupBusinessPartnerName2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1" source="AcademicTitle1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle1Name" source="AcademicTitle1Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2" source="AcademicTitle2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitle2Name" source="AcademicTitle2Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AcademicTitleName" source="AcademicTitleName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefix" source="FamilyNamePrefix"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FamilyNamePrefixName" source="FamilyNamePrefixName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAX_NUMBER" source="FAX_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SMTP_ADDR" source="SMTP_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressID" source="AddressID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Name" source="Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AdditionalName" source="AdditionalName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CityName" source="CityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="District" source="District"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HomeCityName" source="HomeCityName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PostalCode" source="PostalCode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="StreetName" source="StreetName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumber" source="HouseNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HouseNumberSupplementText" source="HouseNumberSupplementText"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Building" source="Building"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Floor" source="Floor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RoomNumber" source="RoomNumber"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsPersonalAddress" source="IsPersonalAddress"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CountryName" source="CountryName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RegionName" source="RegionName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="URI_SRCH" source="URI_SRCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGAL_ENTY" source="LEGAL_ENTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_1_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="SAPClient" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SAPClient"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="SAPClient"/>
+      </attribute>
+      <attribute id="BusinessPartner" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartner"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="BusinessPartner"/>
+      </attribute>
+      <attribute id="BusinessPartnerUUID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartnerUUID"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="BusinessPartnerUUID"/>
+      </attribute>
+      <attribute id="BusinessPartnerType" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartnerType"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="BusinessPartnerType"/>
+      </attribute>
+      <attribute id="BusinessPartnerGrouping" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartnerGrouping"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="BusinessPartnerGrouping"/>
+      </attribute>
+      <attribute id="BusinessPartnerIDByExtSystem" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartnerIDByExtSystem"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="BusinessPartnerIDByExtSystem"/>
+      </attribute>
+      <attribute id="BusinessPartnerCategory" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartnerCategory"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="BusinessPartnerCategory"/>
+      </attribute>
+      <attribute id="BusinessPartnerCategoryName" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartnerCategoryName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="BusinessPartnerCategoryName"/>
+      </attribute>
+      <attribute id="BusinessPartnerFullName" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BusinessPartnerFullName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="BusinessPartnerFullName"/>
+      </attribute>
+      <attribute id="LEGAL_ENTY" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEGAL_ENTY"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="LEGAL_ENTY"/>
+      </attribute>
+      <attribute id="ContactPermission" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ContactPermission"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="ContactPermission"/>
+      </attribute>
+      <attribute id="ContactPermissionName" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ContactPermissionName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="ContactPermissionName"/>
+      </attribute>
+      <attribute id="IsNotReleased" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IsNotReleased"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="IsNotReleased"/>
+      </attribute>
+      <attribute id="IsMale" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IsMale"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="IsMale"/>
+      </attribute>
+      <attribute id="IsFemale" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IsFemale"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="IsFemale"/>
+      </attribute>
+      <attribute id="IsNaturalPerson" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IsNaturalPerson"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="IsNaturalPerson"/>
+      </attribute>
+      <attribute id="IsStandardAddress" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IsStandardAddress"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="IsStandardAddress"/>
+      </attribute>
+      <attribute id="ValidityStartDate" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ValidityStartDate"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="ValidityStartDate"/>
+      </attribute>
+      <attribute id="ValidityEndDate" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ValidityEndDate"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="ValidityEndDate"/>
+      </attribute>
+      <attribute id="LastName" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LastName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="LastName"/>
+      </attribute>
+      <attribute id="FirstName" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FirstName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="FirstName"/>
+      </attribute>
+      <attribute id="PHONENUMBER" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Phone Number"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="TEL_NUMBER"/>
+      </attribute>
+      <attribute id="FAXNUMBER" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fax Number"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="FAX_NUMBER"/>
+      </attribute>
+      <attribute id="EMAILADDRESS" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Email Address"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="SMTP_ADDR"/>
+      </attribute>
+      <attribute id="WEBADDRESS" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Web Address"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="URI_SRCH"/>
+      </attribute>
+      <attribute id="OrganizationBPName1" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="OrganizationBPName1"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="OrganizationBPName1"/>
+      </attribute>
+      <attribute id="OrganizationBPName2" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="OrganizationBPName2"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="OrganizationBPName2"/>
+      </attribute>
+      <attribute id="OrganizationBPName3" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="OrganizationBPName3"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="OrganizationBPName3"/>
+      </attribute>
+      <attribute id="OrganizationBPName4" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="OrganizationBPName4"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="OrganizationBPName4"/>
+      </attribute>
+      <attribute id="GroupBusinessPartnerName1" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GroupBusinessPartnerName1"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="GroupBusinessPartnerName1"/>
+      </attribute>
+      <attribute id="GroupBusinessPartnerName2" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GroupBusinessPartnerName2"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="GroupBusinessPartnerName2"/>
+      </attribute>
+      <attribute id="AcademicTitle1" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AcademicTitle1"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="AcademicTitle1"/>
+      </attribute>
+      <attribute id="AcademicTitle1Name" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AcademicTitle1Name"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="AcademicTitle1Name"/>
+      </attribute>
+      <attribute id="AcademicTitle2" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AcademicTitle2"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="AcademicTitle2"/>
+      </attribute>
+      <attribute id="AcademicTitle2Name" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AcademicTitle2Name"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="AcademicTitle2Name"/>
+      </attribute>
+      <attribute id="AcademicTitleName" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AcademicTitleName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="AcademicTitleName"/>
+      </attribute>
+      <attribute id="FamilyNamePrefix" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FamilyNamePrefix"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="FamilyNamePrefix"/>
+      </attribute>
+      <attribute id="FamilyNamePrefixName" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FamilyNamePrefixName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="FamilyNamePrefixName"/>
+      </attribute>
+      <attribute id="AddressID" order="39" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AddressID"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="AddressID"/>
+      </attribute>
+      <attribute id="AddressUUID" order="40" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AddressUUID"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="AddressUUID"/>
+      </attribute>
+      <attribute id="Name" order="41" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Name"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="Name"/>
+      </attribute>
+      <attribute id="AdditionalName" order="42" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AdditionalName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="AdditionalName"/>
+      </attribute>
+      <attribute id="CityName" order="43" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CityName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="CityName"/>
+      </attribute>
+      <attribute id="District" order="44" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="District"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="District"/>
+      </attribute>
+      <attribute id="HomeCityName" order="45" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HomeCityName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="HomeCityName"/>
+      </attribute>
+      <attribute id="PostalCode" order="46" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PostalCode"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="PostalCode"/>
+      </attribute>
+      <attribute id="StreetName" order="47" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="StreetName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="StreetName"/>
+      </attribute>
+      <attribute id="HouseNumber" order="48" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HouseNumber"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="HouseNumber"/>
+      </attribute>
+      <attribute id="HouseNumberSupplementText" order="49" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HouseNumberSupplementText"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="HouseNumberSupplementText"/>
+      </attribute>
+      <attribute id="Building" order="50" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Building"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="Building"/>
+      </attribute>
+      <attribute id="Floor" order="51" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Floor"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="Floor"/>
+      </attribute>
+      <attribute id="RoomNumber" order="52" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RoomNumber"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="RoomNumber"/>
+      </attribute>
+      <attribute id="Country" order="53" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="Country"/>
+      </attribute>
+      <attribute id="Region" order="54" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Region"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="Region"/>
+      </attribute>
+      <attribute id="IsPersonalAddress" order="55" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IsPersonalAddress"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="IsPersonalAddress"/>
+      </attribute>
+      <attribute id="CountryName" order="56" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CountryName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="CountryName"/>
+      </attribute>
+      <attribute id="RegionName" order="57" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RegionName"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="RegionName"/>
+      </attribute>
+      <attribute id="LATITUDE" order="58" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LATITUDE"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="LATITUDE"/>
+      </attribute>
+      <attribute id="LONGITUDE" order="59" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LONGITUDE"/>
+        <keyMapping columnObjectName="Projection_1_1" columnName="LONGITUDE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="-81"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="801" y="1196"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="801" y="1089"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="801" y="991"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="801" y="893"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="540" y="911"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="680" y="793"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="680" y="678"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="430" y="687"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="580" y="538"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="300" y="547"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_7" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="470" y="436"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="140" y="426"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_8" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="359" y="316"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="101" y="316"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_9" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="220" y="210"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_7" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="10" y="210"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_10" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="100"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="-2"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

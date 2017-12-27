@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="PurchasingDocumentItem" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="Item data for purchasing documents"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="44"/>
+  <dataSources>
+    <DataSource id="EKPO" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="EKPO"/>
+    </DataSource>
+    <DataSource id="PurchasingDocumentHeader" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/PurchasingDocumentHeader</resourceUri>
+    </DataSource>
+    <DataSource id="ConversionFactorPerDate" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/salesmapAPF1d2.webapp.models/calculationviews/ConversionFactorPerDate</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Item">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="AEDAT"/>
+        <viewAttribute id="TXZ01"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EMATN"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="MATKL"/>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="KTMNG"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="UMREN"/>
+        <viewAttribute id="NETPR"/>
+        <viewAttribute id="PEINH"/>
+        <viewAttribute id="NETWR"/>
+        <viewAttribute id="UEBTO"/>
+        <viewAttribute id="UEBTK"/>
+        <viewAttribute id="UNTTO"/>
+        <viewAttribute id="ELIKZ"/>
+        <viewAttribute id="EREKZ"/>
+        <viewAttribute id="PSTYP"/>
+        <viewAttribute id="KNTTP"/>
+        <viewAttribute id="VRTKZ"/>
+        <viewAttribute id="TWRKZ"/>
+        <viewAttribute id="WEPOS"/>
+        <viewAttribute id="REPOS"/>
+        <viewAttribute id="WEBRE"/>
+        <viewAttribute id="KONNR"/>
+        <viewAttribute id="KTPNR"/>
+        <viewAttribute id="LMEIN"/>
+        <viewAttribute id="ZWERT"/>
+        <viewAttribute id="BSTYP"/>
+        <viewAttribute id="EFFWR"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="STAPO"/>
+        <viewAttribute id="XERSY"/>
+        <viewAttribute id="AKTNR"/>
+        <viewAttribute id="RETPO"/>
+        <viewAttribute id="BSGRU"/>
+        <viewAttribute id="AFNAM"/>
+        <viewAttribute id="KO_PRCTR"/>
+        <viewAttribute id="BPRME"/>
+        <viewAttribute id="ATTYP"/>
+        <viewAttribute id="MEPRF"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#EKPO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEKZ" source="LOEKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AEDAT" source="AEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TXZ01" source="TXZ01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMATN" source="EMATN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATKL" source="MATKL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INFNR" source="INFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTMNG" source="KTMNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PEINH" source="PEINH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETWR" source="NETWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UEBTO" source="UEBTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UEBTK" source="UEBTK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UNTTO" source="UNTTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELIKZ" source="ELIKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EREKZ" source="EREKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTYP" source="PSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KNTTP" source="KNTTP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRTKZ" source="VRTKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TWRKZ" source="TWRKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEPOS" source="WEPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPOS" source="REPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBRE" source="WEBRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONNR" source="KONNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTPNR" source="KTPNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LMEIN" source="LMEIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWERT" source="ZWERT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTYP" source="BSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EFFWR" source="EFFWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAPO" source="STAPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XERSY" source="XERSY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETPO" source="RETPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSGRU" source="BSGRU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AFNAM" source="AFNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KO_PRCTR" source="KO_PRCTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BPRME" source="BPRME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ATTYP" source="ATTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEPRF" source="MEPRF"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="HEADER">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="PurchasingDocument"/>
+        <viewAttribute id="PurchasingDocumentType"/>
+        <viewAttribute id="PurchasingDocumentStatus"/>
+        <viewAttribute id="CreatedByUser"/>
+        <viewAttribute id="Vendor"/>
+        <viewAttribute id="IsHeld"/>
+        <viewAttribute id="Language"/>
+        <viewAttribute id="InvoicingParty"/>
+        <viewAttribute id="SupplyingPlant"/>
+        <viewAttribute id="SupplyingVendor"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="PurchasingDocumentOrderDate"/>
+        <viewAttribute id="ExchangeRate"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="FiscalYearVariant"/>
+        <viewAttribute id="CompanyCodeCurrency"/>
+        <viewAttribute id="PurchasingGroup"/>
+        <viewAttribute id="PurchasingOrganisation"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PurchasingDocumentHeader">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="PurchasingDocument"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentStatus" source="PurchasingDocumentStatus"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsHeld" source="IsHeld"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Language" source="Language"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="InvoicingParty" source="InvoicingParty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SupplyingPlant" source="SupplyingPlant"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SupplyingVendor" source="SupplyingVendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="PurchasingDocumentOrderDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ExchangeRate" source="ExchangeRate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYearVariant" source="FiscalYearVariant"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingOrganisation" source="PurchasingOrganisation"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="PurchasingDocumentType"/>
+        <viewAttribute id="PurchasingDocumentStatus"/>
+        <viewAttribute id="CreatedByUser"/>
+        <viewAttribute id="Vendor"/>
+        <viewAttribute id="IsHeld"/>
+        <viewAttribute id="Language"/>
+        <viewAttribute id="InvoicingParty"/>
+        <viewAttribute id="SupplyingPlant"/>
+        <viewAttribute id="SupplyingVendor"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="PurchasingDocumentOrderDate"/>
+        <viewAttribute id="ExchangeRate"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="FiscalYearVariant"/>
+        <viewAttribute id="CompanyCodeCurrency"/>
+        <viewAttribute id="PurchasingGroup"/>
+        <viewAttribute id="PurchasingOrganisation"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="AEDAT"/>
+        <viewAttribute id="TXZ01"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EMATN"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="MATKL"/>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="KTMNG"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="UMREN"/>
+        <viewAttribute id="NETPR"/>
+        <viewAttribute id="PEINH"/>
+        <viewAttribute id="NETWR"/>
+        <viewAttribute id="UEBTO"/>
+        <viewAttribute id="UEBTK"/>
+        <viewAttribute id="UNTTO"/>
+        <viewAttribute id="ELIKZ"/>
+        <viewAttribute id="EREKZ"/>
+        <viewAttribute id="PSTYP"/>
+        <viewAttribute id="KNTTP"/>
+        <viewAttribute id="VRTKZ"/>
+        <viewAttribute id="TWRKZ"/>
+        <viewAttribute id="WEPOS"/>
+        <viewAttribute id="REPOS"/>
+        <viewAttribute id="WEBRE"/>
+        <viewAttribute id="KONNR"/>
+        <viewAttribute id="KTPNR"/>
+        <viewAttribute id="LMEIN"/>
+        <viewAttribute id="ZWERT"/>
+        <viewAttribute id="BSTYP"/>
+        <viewAttribute id="EFFWR"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="STAPO"/>
+        <viewAttribute id="XERSY"/>
+        <viewAttribute id="AKTNR"/>
+        <viewAttribute id="RETPO"/>
+        <viewAttribute id="BSGRU"/>
+        <viewAttribute id="AFNAM"/>
+        <viewAttribute id="KO_PRCTR"/>
+        <viewAttribute id="BPRME"/>
+        <viewAttribute id="ATTYP"/>
+        <viewAttribute id="MEPRF"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Item">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEKZ" source="LOEKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AEDAT" source="AEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TXZ01" source="TXZ01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMATN" source="EMATN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATKL" source="MATKL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INFNR" source="INFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTMNG" source="KTMNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PEINH" source="PEINH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETWR" source="NETWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UEBTO" source="UEBTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UEBTK" source="UEBTK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UNTTO" source="UNTTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELIKZ" source="ELIKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EREKZ" source="EREKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTYP" source="PSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KNTTP" source="KNTTP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRTKZ" source="VRTKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TWRKZ" source="TWRKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEPOS" source="WEPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPOS" source="REPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBRE" source="WEBRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONNR" source="KONNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTPNR" source="KTPNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LMEIN" source="LMEIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWERT" source="ZWERT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTYP" source="BSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EFFWR" source="EFFWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAPO" source="STAPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XERSY" source="XERSY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETPO" source="RETPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSGRU" source="BSGRU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AFNAM" source="AFNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KO_PRCTR" source="KO_PRCTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BPRME" source="BPRME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ATTYP" source="ATTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEPRF" source="MEPRF"/>
+      </input>
+      <input node="#HEADER">
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentStatus" source="PurchasingDocumentStatus"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsHeld" source="IsHeld"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Language" source="Language"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="InvoicingParty" source="InvoicingParty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SupplyingPlant" source="SupplyingPlant"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SupplyingVendor" source="SupplyingVendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="PurchasingDocumentOrderDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ExchangeRate" source="ExchangeRate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYearVariant" source="FiscalYearVariant"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingOrganisation" source="PurchasingOrganisation"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="PurchasingDocument"/>
+      </input>
+      <joinAttribute name="MANDT"/>
+      <joinAttribute name="EBELN"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="CompanyCodeCurrency"/>
+        <viewAttribute id="ConversionFactor"/>
+        <viewAttribute id="ConversionDate"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="ConversionData_2" expressionLanguage="COLUMN_ENGINE">
+          <formula>date(&quot;ConversionDate&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#ConversionFactorPerDate">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ConversionFactor" source="ConversionFactor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ConversionDate" source="ConversionDate"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="PurchasingDocumentType"/>
+        <viewAttribute id="PurchasingDocumentStatus"/>
+        <viewAttribute id="CreatedByUser"/>
+        <viewAttribute id="Vendor"/>
+        <viewAttribute id="IsHeld"/>
+        <viewAttribute id="Language"/>
+        <viewAttribute id="InvoicingParty"/>
+        <viewAttribute id="SupplyingPlant"/>
+        <viewAttribute id="SupplyingVendor"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="PurchasingDocumentOrderDate"/>
+        <viewAttribute id="ExchangeRate"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="FiscalYearVariant"/>
+        <viewAttribute id="CompanyCodeCurrency"/>
+        <viewAttribute id="PurchasingGroup"/>
+        <viewAttribute id="PurchasingOrganisation"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="AEDAT"/>
+        <viewAttribute id="TXZ01"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EMATN"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="MATKL"/>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="UMREN"/>
+        <viewAttribute id="NETPR"/>
+        <viewAttribute id="PEINH"/>
+        <viewAttribute id="UEBTO"/>
+        <viewAttribute id="UEBTK"/>
+        <viewAttribute id="UNTTO"/>
+        <viewAttribute id="ELIKZ"/>
+        <viewAttribute id="EREKZ"/>
+        <viewAttribute id="PSTYP"/>
+        <viewAttribute id="KNTTP"/>
+        <viewAttribute id="VRTKZ"/>
+        <viewAttribute id="TWRKZ"/>
+        <viewAttribute id="WEPOS"/>
+        <viewAttribute id="REPOS"/>
+        <viewAttribute id="WEBRE"/>
+        <viewAttribute id="KONNR"/>
+        <viewAttribute id="KTPNR"/>
+        <viewAttribute id="LMEIN"/>
+        <viewAttribute id="BSTYP"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="STAPO"/>
+        <viewAttribute id="XERSY"/>
+        <viewAttribute id="AKTNR"/>
+        <viewAttribute id="KTMNG"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="NETWR"/>
+        <viewAttribute id="ZWERT"/>
+        <viewAttribute id="EFFWR"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="RETPO"/>
+        <viewAttribute id="BSGRU"/>
+        <viewAttribute id="AFNAM"/>
+        <viewAttribute id="KO_PRCTR"/>
+        <viewAttribute id="BPRME"/>
+        <viewAttribute id="ATTYP"/>
+        <viewAttribute id="MEPRF"/>
+        <viewAttribute id="ConversionFactor"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentStatus" source="PurchasingDocumentStatus"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsHeld" source="IsHeld"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Language" source="Language"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="InvoicingParty" source="InvoicingParty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SupplyingPlant" source="SupplyingPlant"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SupplyingVendor" source="SupplyingVendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="PurchasingDocumentOrderDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ExchangeRate" source="ExchangeRate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYearVariant" source="FiscalYearVariant"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingOrganisation" source="PurchasingOrganisation"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEKZ" source="LOEKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AEDAT" source="AEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TXZ01" source="TXZ01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMATN" source="EMATN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATKL" source="MATKL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INFNR" source="INFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PEINH" source="PEINH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UEBTO" source="UEBTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UEBTK" source="UEBTK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UNTTO" source="UNTTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELIKZ" source="ELIKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EREKZ" source="EREKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTYP" source="PSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KNTTP" source="KNTTP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRTKZ" source="VRTKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TWRKZ" source="TWRKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEPOS" source="WEPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPOS" source="REPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBRE" source="WEBRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONNR" source="KONNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTPNR" source="KTPNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LMEIN" source="LMEIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTYP" source="BSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAPO" source="STAPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XERSY" source="XERSY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTMNG" source="KTMNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETWR" source="NETWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWERT" source="ZWERT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EFFWR" source="EFFWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETPO" source="RETPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSGRU" source="BSGRU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AFNAM" source="AFNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KO_PRCTR" source="KO_PRCTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BPRME" source="BPRME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ATTYP" source="ATTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEPRF" source="MEPRF"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ConversionFactor" source="ConversionFactor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="ConversionDate"/>
+      </input>
+      <joinAttribute name="MANDT"/>
+      <joinAttribute name="Currency"/>
+      <joinAttribute name="CompanyCodeCurrency"/>
+      <joinAttribute name="PurchasingDocumentOrderDate"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="AKTNR"/>
+        <viewAttribute id="XERSY"/>
+        <viewAttribute id="STAPO"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="BSTYP"/>
+        <viewAttribute id="LMEIN"/>
+        <viewAttribute id="KTPNR"/>
+        <viewAttribute id="KONNR"/>
+        <viewAttribute id="WEBRE"/>
+        <viewAttribute id="REPOS"/>
+        <viewAttribute id="WEPOS"/>
+        <viewAttribute id="TWRKZ"/>
+        <viewAttribute id="VRTKZ"/>
+        <viewAttribute id="KNTTP"/>
+        <viewAttribute id="PSTYP"/>
+        <viewAttribute id="EREKZ"/>
+        <viewAttribute id="ELIKZ"/>
+        <viewAttribute id="UNTTO"/>
+        <viewAttribute id="UEBTK"/>
+        <viewAttribute id="UEBTO"/>
+        <viewAttribute id="PEINH"/>
+        <viewAttribute id="NETPR"/>
+        <viewAttribute id="UMREN"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="MATKL"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="EMATN"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="TXZ01"/>
+        <viewAttribute id="AEDAT"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="PurchasingOrganisation"/>
+        <viewAttribute id="PurchasingGroup"/>
+        <viewAttribute id="CompanyCodeCurrency"/>
+        <viewAttribute id="FiscalYearVariant"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="ExchangeRate"/>
+        <viewAttribute id="PurchasingDocumentOrderDate"/>
+        <viewAttribute id="ValidityStartDate"/>
+        <viewAttribute id="ValidityEndDate"/>
+        <viewAttribute id="SupplyingVendor"/>
+        <viewAttribute id="SupplyingPlant"/>
+        <viewAttribute id="InvoicingParty"/>
+        <viewAttribute id="Language"/>
+        <viewAttribute id="IsHeld"/>
+        <viewAttribute id="Vendor"/>
+        <viewAttribute id="CreatedByUser"/>
+        <viewAttribute id="PurchasingDocumentStatus"/>
+        <viewAttribute id="PurchasingDocumentType"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="EFFWR"/>
+        <viewAttribute id="ZWERT"/>
+        <viewAttribute id="NETWR"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="KTMNG"/>
+        <viewAttribute id="RETPO"/>
+        <viewAttribute id="BSGRU"/>
+        <viewAttribute id="AFNAM"/>
+        <viewAttribute id="KO_PRCTR"/>
+        <viewAttribute id="BPRME"/>
+        <viewAttribute id="ATTYP"/>
+        <viewAttribute id="MEPRF"/>
+        <viewAttribute id="ConversionFactor"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="NETWRInCoCodeCur" length="15" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(isnull(&quot;ConversionFactor&quot;), (if(&quot;NETWR&quot; !=0,if(&quot;ExchangeRate&quot; >=0,&quot;NETWR&quot;*&quot;ExchangeRate&quot;,abs((1/&quot;ExchangeRate&quot;)*&quot;NETWR&quot;)),0)), (if(&quot;NETWR&quot; !=0,if(&quot;ExchangeRate&quot; >=0,&quot;NETWR&quot;*&quot;ExchangeRate&quot;,abs((1/&quot;ExchangeRate&quot;)*&quot;NETWR&quot;)),0)*&quot;ConversionFactor&quot;))</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="EFFWRInCoCodeCur" length="15" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(isnull(&quot;ConversionFactor&quot;), (if(&quot;EFFWR&quot; !=0,if(&quot;ExchangeRate&quot; >=0,&quot;EFFWR&quot;*&quot;ExchangeRate&quot;,abs((1/&quot;ExchangeRate&quot;)*&quot;EFFWR&quot;)),0)), (if(&quot;EFFWR&quot; !=0,if(&quot;ExchangeRate&quot; >=0,&quot;EFFWR&quot;*&quot;ExchangeRate&quot;,abs((1/&quot;ExchangeRate&quot;)*&quot;EFFWR&quot;)),0)*&quot;ConversionFactor&quot;))</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XERSY" source="XERSY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAPO" source="STAPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTYP" source="BSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LMEIN" source="LMEIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTPNR" source="KTPNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONNR" source="KONNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBRE" source="WEBRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPOS" source="REPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEPOS" source="WEPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TWRKZ" source="TWRKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRTKZ" source="VRTKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KNTTP" source="KNTTP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTYP" source="PSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EREKZ" source="EREKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELIKZ" source="ELIKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UNTTO" source="UNTTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UEBTK" source="UEBTK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UEBTO" source="UEBTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PEINH" source="PEINH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INFNR" source="INFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATKL" source="MATKL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMATN" source="EMATN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TXZ01" source="TXZ01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AEDAT" source="AEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEKZ" source="LOEKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingOrganisation" source="PurchasingOrganisation"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYearVariant" source="FiscalYearVariant"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ExchangeRate" source="ExchangeRate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="PurchasingDocumentOrderDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SupplyingVendor" source="SupplyingVendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SupplyingPlant" source="SupplyingPlant"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="InvoicingParty" source="InvoicingParty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Language" source="Language"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IsHeld" source="IsHeld"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentStatus" source="PurchasingDocumentStatus"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EFFWR" source="EFFWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWERT" source="ZWERT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETWR" source="NETWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTMNG" source="KTMNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETPO" source="RETPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSGRU" source="BSGRU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AFNAM" source="AFNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KO_PRCTR" source="KO_PRCTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BPRME" source="BPRME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ATTYP" source="ATTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEPRF" source="MEPRF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ConversionFactor" source="ConversionFactor"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="SAPClient" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SAP Client"/>
+        <keyMapping columnObjectName="Projection_1" columnName="MANDT"/>
+      </attribute>
+      <attribute id="PurchasingDocument" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EBELN"/>
+      </attribute>
+      <attribute id="PurchasingDocumentItem" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Item"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EBELP"/>
+      </attribute>
+      <attribute id="PurchasingDocumentCategory" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Category"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BSTYP"/>
+      </attribute>
+      <attribute id="PurchasingDocumentType" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Type"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PurchasingDocumentType"/>
+      </attribute>
+      <attribute id="PurchasingDocumentStatus" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Status"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PurchasingDocumentStatus"/>
+      </attribute>
+      <attribute id="PurchasingOrganisation" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Organization"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PurchasingOrganisation"/>
+      </attribute>
+      <attribute id="PurchasingGroup" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Group"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PurchasingGroup"/>
+      </attribute>
+      <attribute id="CompanyCodeCurrency" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code Currency"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CompanyCodeCurrency"/>
+      </attribute>
+      <attribute id="FiscalYearVariant" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fiscal Year Variant"/>
+        <keyMapping columnObjectName="Projection_1" columnName="FiscalYearVariant"/>
+      </attribute>
+      <attribute id="Currency" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Currency"/>
+      </attribute>
+      <attribute id="ExchangeRate" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Exchange Rate"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ExchangeRate"/>
+      </attribute>
+      <attribute id="PurchasingDocumentOrderDate" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Order Date"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PurchasingDocumentOrderDate"/>
+      </attribute>
+      <attribute id="ValidityStartDate" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Validity Start Date"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ValidityStartDate"/>
+      </attribute>
+      <attribute id="ValidityEndDate" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Validity End Date"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ValidityEndDate"/>
+      </attribute>
+      <attribute id="SupplyingVendor" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Supplying Vendor"/>
+        <keyMapping columnObjectName="Projection_1" columnName="SupplyingVendor"/>
+      </attribute>
+      <attribute id="SupplyingPlant" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Supplying Plant"/>
+        <keyMapping columnObjectName="Projection_1" columnName="SupplyingPlant"/>
+      </attribute>
+      <attribute id="InvoicingParty" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Invoicing Party"/>
+        <keyMapping columnObjectName="Projection_1" columnName="InvoicingParty"/>
+      </attribute>
+      <attribute id="IsDeleted" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Deleted"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LOEKZ"/>
+      </attribute>
+      <attribute id="Material" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Material"/>
+        <keyMapping columnObjectName="Projection_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="MaterialCategory" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Material Category"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ATTYP"/>
+      </attribute>
+      <attribute id="PurchasingDocumentItemText" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Item Text"/>
+        <keyMapping columnObjectName="Projection_1" columnName="TXZ01"/>
+      </attribute>
+      <attribute id="MfrPartNumber" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Manufacturer Part Number"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EMATN"/>
+      </attribute>
+      <attribute id="Vendor" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Supplier"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Vendor"/>
+      </attribute>
+      <attribute id="CompanyCode" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BUKRS"/>
+      </attribute>
+      <attribute id="Plant" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Plant"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="StorageLocation" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Storage Location"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LGORT"/>
+      </attribute>
+      <attribute id="MaterialGroup" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Material Group"/>
+        <keyMapping columnObjectName="Projection_1" columnName="MATKL"/>
+      </attribute>
+      <attribute id="PurgDocOrderQuantityUnit" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purg Doc. Order Quantity Unit"/>
+        <keyMapping columnObjectName="Projection_1" columnName="MEINS"/>
+      </attribute>
+      <attribute id="OrderItemQtyToBaseQtyNmrtr" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Item Qty to Base Qty Nmrtr"/>
+        <keyMapping columnObjectName="Projection_1" columnName="UMREZ"/>
+      </attribute>
+      <attribute id="OrderItemQtyToBaseQtyDnmntr" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Item Qty to Base Qty Dnmntr"/>
+        <keyMapping columnObjectName="Projection_1" columnName="UMREN"/>
+      </attribute>
+      <attribute id="PurgDocNetPriceQuantity" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purg Doc Net Price Quantity"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PEINH"/>
+      </attribute>
+      <attribute id="IsCompletelyDelivered" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Completely Delivered"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ELIKZ"/>
+      </attribute>
+      <attribute id="IsFinallyInvoiced" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Finally Invoiced"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EREKZ"/>
+      </attribute>
+      <attribute id="GoodsReceiptIsExpected" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Goods Receipt Is Expected"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WEPOS"/>
+      </attribute>
+      <attribute id="InvoiceIsExpected" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Invoice Is Expected"/>
+        <keyMapping columnObjectName="Projection_1" columnName="REPOS"/>
+      </attribute>
+      <attribute id="InvoiceIsGoodsReceiptBased" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Invoice Is Goods Receipt Based"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WEBRE"/>
+      </attribute>
+      <attribute id="PurchaseOutlineAgreementItem" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Outline Agreement Item"/>
+        <keyMapping columnObjectName="Projection_1" columnName="KTPNR"/>
+      </attribute>
+      <attribute id="PurchaseOutlineAgreement" order="39" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Outline Agreement"/>
+        <keyMapping columnObjectName="Projection_1" columnName="KONNR"/>
+      </attribute>
+      <attribute id="EvaldRcptSettlmtIsAllowed" order="40" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Evald Rcpt Settlmt Is Allowed"/>
+        <keyMapping columnObjectName="Projection_1" columnName="XERSY"/>
+      </attribute>
+      <attribute id="UnlimitedOverdeliveryIsAllowed" order="41" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unlimited Overdelivery Is Allowed"/>
+        <keyMapping columnObjectName="Projection_1" columnName="UEBTK"/>
+      </attribute>
+      <attribute id="OverdeliveryToleranceLmtInPct" order="42" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Overdelivery Tolerance Lmt in Pct"/>
+        <keyMapping columnObjectName="Projection_1" columnName="UEBTO"/>
+      </attribute>
+      <attribute id="UnderdeliveryToleranceLmtInPct" order="43" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Underdelivery Tolerance Lmt in Pct"/>
+        <keyMapping columnObjectName="Projection_1" columnName="UNTTO"/>
+      </attribute>
+      <attribute id="PurchasingDocumentReason" order="44" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Reason"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BSGRU"/>
+      </attribute>
+      <attribute id="RequisitionerUser" order="45" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Requisitioner User"/>
+        <keyMapping columnObjectName="Projection_1" columnName="AFNAM"/>
+      </attribute>
+      <attribute id="RetailPromotion" order="46" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Retail Promotion"/>
+        <keyMapping columnObjectName="Projection_1" columnName="AKTNR"/>
+      </attribute>
+      <attribute id="BaseUnit" order="47" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LMEIN"/>
+      </attribute>
+      <attribute id="PurchasingDocumentItemCategory" order="48" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Item Category"/>
+        <keyMapping columnObjectName="Projection_1" columnName="PSTYP"/>
+      </attribute>
+      <attribute id="CreatedByUser" order="49" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Created By"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CreatedByUser"/>
+      </attribute>
+      <attribute id="Language" order="50" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Language"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Language"/>
+      </attribute>
+      <attribute id="ProfitCenter" order="51" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Profit Center"/>
+        <keyMapping columnObjectName="Projection_1" columnName="KO_PRCTR"/>
+      </attribute>
+      <attribute id="PurchaseOrderPriceUnit" order="52" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Order Price Unit"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BPRME"/>
+      </attribute>
+      <attribute id="MultipleAcctAssgmtDistribution" order="53" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Multiple Acct Assgmt Distribution"/>
+        <keyMapping columnObjectName="Projection_1" columnName="VRTKZ"/>
+      </attribute>
+      <attribute id="PartialInvoiceDistribution" order="54" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Partial Invoice Distribution"/>
+        <keyMapping columnObjectName="Projection_1" columnName="TWRKZ"/>
+      </attribute>
+      <attribute id="PricingDateControl" order="55" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Pricing Date Control"/>
+        <keyMapping columnObjectName="Projection_1" columnName="MEPRF"/>
+      </attribute>
+      <attribute id="ItemIsStatistical" order="56" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Item Is Statistical"/>
+        <keyMapping columnObjectName="Projection_1" columnName="STAPO"/>
+      </attribute>
+      <attribute id="IsReturnsItem" order="57" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Returns Item"/>
+        <keyMapping columnObjectName="Projection_1" columnName="RETPO"/>
+      </attribute>
+      <attribute id="ItemVolumeUnit" order="58" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Item Volume Unit"/>
+        <keyMapping columnObjectName="Projection_1" columnName="VOLEH"/>
+      </attribute>
+      <attribute id="ItemWeightUnit" order="59" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Item Weight Unit"/>
+        <keyMapping columnObjectName="Projection_1" columnName="GEWEI"/>
+      </attribute>
+      <attribute id="AcctAssignmentCategory" order="60" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Account Assignment Category"/>
+        <keyMapping columnObjectName="Projection_1" columnName="KNTTP"/>
+      </attribute>
+      <attribute id="LastChangeDate" order="61" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Change Date"/>
+        <keyMapping columnObjectName="Projection_1" columnName="AEDAT"/>
+      </attribute>
+      <attribute id="RefPurgDocInfoRecord" order="62" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Ref. Purg Doc. Info Record"/>
+        <keyMapping columnObjectName="Projection_1" columnName="INFNR"/>
+      </attribute>
+      <attribute id="IsHeld" order="63" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Held"/>
+        <keyMapping columnObjectName="Projection_1" columnName="IsHeld"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="PurgDocNetAmount" order="64" semanticType="amount" aggregationType="sum" measureType="amount">
+        <descriptions defaultDescription="Net Order Value in PO Currency"/>
+        <unitCurrencyAttribute attributeName="Currency"/>
+        <measureMapping columnObjectName="Projection_1" columnName="NETWR"/>
+      </measure>
+      <measure id="PurgDocEffectiveItemAmount" order="65" semanticType="amount" aggregationType="sum" measureType="amount">
+        <descriptions defaultDescription="Purg Doc. Effective Item Amount"/>
+        <unitCurrencyAttribute attributeName="Currency"/>
+        <measureMapping columnObjectName="Projection_1" columnName="EFFWR"/>
+      </measure>
+      <measure id="TargetQuantity" order="66" semanticType="quantity" aggregationType="sum" measureType="quantity">
+        <descriptions defaultDescription="Target Quantity"/>
+        <unitCurrencyAttribute attributeName="PurgDocOrderQuantityUnit"/>
+        <measureMapping columnObjectName="Projection_1" columnName="KTMNG"/>
+      </measure>
+      <measure id="PurchasingDocumentOrderQty" order="67" semanticType="quantity" aggregationType="sum" measureType="quantity">
+        <descriptions defaultDescription="Purchasing Document Order Qty"/>
+        <unitCurrencyAttribute attributeName="PurgDocOrderQuantityUnit"/>
+        <measureMapping columnObjectName="Projection_1" columnName="MENGE"/>
+      </measure>
+      <measure id="PurgDocNetPriceAmount" order="68" semanticType="amount" aggregationType="sum" measureType="amount">
+        <descriptions defaultDescription="Purg Doc. Net Price Amount"/>
+        <unitCurrencyAttribute attributeName="Currency"/>
+        <measureMapping columnObjectName="Projection_1" columnName="NETPR"/>
+      </measure>
+      <measure id="OutlineAgreementTargetAmount" order="69" semanticType="amount" aggregationType="sum" measureType="amount">
+        <descriptions defaultDescription="Outline Agreement Target Amount"/>
+        <unitCurrencyAttribute attributeName="Currency"/>
+        <measureMapping columnObjectName="Projection_1" columnName="ZWERT"/>
+      </measure>
+      <measure id="ItemVolume" order="70" semanticType="quantity" aggregationType="sum" measureType="quantity">
+        <descriptions defaultDescription="Item Volume"/>
+        <unitCurrencyAttribute attributeName="ItemVolumeUnit"/>
+        <measureMapping columnObjectName="Projection_1" columnName="VOLUM"/>
+      </measure>
+      <measure id="ItemNetWeight" order="71" semanticType="quantity" aggregationType="sum" measureType="quantity">
+        <descriptions defaultDescription="Item Net Weight"/>
+        <unitCurrencyAttribute attributeName="ItemWeightUnit"/>
+        <measureMapping columnObjectName="Projection_1" columnName="NTGEW"/>
+      </measure>
+      <measure id="PurgDocItmNetAmtInCoCodeCrcy" order="72" semanticType="amount" aggregationType="sum" measureType="amount">
+        <descriptions defaultDescription="Purg Doc. Item Net Amount in Co. Code Crcy"/>
+        <unitCurrencyAttribute attributeName="CompanyCodeCurrency"/>
+        <measureMapping columnObjectName="Projection_1" columnName="NETWRInCoCodeCur"/>
+      </measure>
+      <measure id="PurgDocEffctvItmAmtInCoCdeCrcy" order="73" semanticType="amount" aggregationType="sum" measureType="amount">
+        <descriptions defaultDescription="Purg Doc. Effective Item Amount in Co. Code Crcy"/>
+        <unitCurrencyAttribute attributeName="CompanyCodeCurrency"/>
+        <measureMapping columnObjectName="Projection_1" columnName="EFFWRInCoCodeCur"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Item" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="441"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="HEADER" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="441"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="343"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="315" y="358"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="245"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="166"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

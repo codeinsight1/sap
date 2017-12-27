@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="BP_WCA_Mock" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" analyticViewCompatibilityMode="true" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="BP_WCA_Mock"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="23"/>
+  <dataSources>
+    <DataSource id="REGION_SALES_BP" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/salesmapAPF1d2.webapp.models/calculationviews/REGION_SALES_BP</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="PARTNERID"/>
+        <viewAttribute id="COMPANYNAME"/>
+        <viewAttribute id="COUNTRY"/>
+        <viewAttribute id="GROSSAMOUNT"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="ID" length="256" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;PARTNERID&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SAPClient" length="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>'777'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CompanyCode" length="4" expressionLanguage="COLUMN_ENGINE">
+          <formula>rightstru(&quot;PARTNERID&quot;, 4)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="VARCHAR" id="CompanyCodeName" length="25" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;COMPANYNAME&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Country" length="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;COUNTRY&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Currency" length="5" expressionLanguage="COLUMN_ENGINE">
+          <formula>'USD'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Language" length="1" expressionLanguage="COLUMN_ENGINE">
+          <formula>'E'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="ChartOfAccounts" length="4" expressionLanguage="COLUMN_ENGINE">
+          <formula>'0001'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="FiscalYearVariant" length="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>'00'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Company" length="6" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;COMPANYNAME&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CountryChartOfAccounts" length="4" expressionLanguage="COLUMN_ENGINE">
+          <formula>'0000'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CreditControlArea" length="4" expressionLanguage="COLUMN_ENGINE">
+          <formula>'0000'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CityName" length="25" expressionLanguage="COLUMN_ENGINE">
+          <formula>'ABC'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CountryName" length="15" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;COUNTRY&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CurrencyShortName" length="15" expressionLanguage="COLUMN_ENGINE">
+          <formula>'USD'</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#REGION_SALES_BP">
+        <mapping xsi:type="Calculation:AttributeMapping" target="PARTNERID" source="PARTNERID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMPANYNAME" source="COMPANYNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="GROSSAMOUNT"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="SAPClient" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SAP Client"/>
+        <keyMapping columnObjectName="Projection_1" columnName="SAPClient"/>
+      </attribute>
+      <attribute id="CompanyCode" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CompanyCode"/>
+      </attribute>
+      <attribute id="CompanyCodeName" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CompanyCodeName"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CompanyCodeName"/>
+      </attribute>
+      <attribute id="Country" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Country"/>
+      </attribute>
+      <attribute id="Currency" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Currency"/>
+      </attribute>
+      <attribute id="Language" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Language"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Language"/>
+      </attribute>
+      <attribute id="ChartOfAccounts" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Chart Of Accounts"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ChartOfAccounts"/>
+      </attribute>
+      <attribute id="FiscalYearVariant" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fiscal Year Variant"/>
+        <keyMapping columnObjectName="Projection_1" columnName="FiscalYearVariant"/>
+      </attribute>
+      <attribute id="Company" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Company"/>
+      </attribute>
+      <attribute id="CountryChartOfAccounts" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Chart Of Accounts"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CountryChartOfAccounts"/>
+      </attribute>
+      <attribute id="CreditControlArea" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Credit Control Area"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CreditControlArea"/>
+      </attribute>
+      <attribute id="CityName" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City Name"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CityName"/>
+      </attribute>
+      <attribute id="CountryName" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Name"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CountryName"/>
+      </attribute>
+      <attribute id="CurrencyShortName" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency Short Name"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CurrencyShortName"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="30" y="220"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

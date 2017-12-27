@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="ConversionFactorPerDate" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="Currency Conversion Factor per Order date"/>
+  <defaultSchema schemaName="SAP_ECC"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="43"/>
+  <dataSources>
+    <DataSource id="PurchasingDocumentHeader" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/PurchasingDocumentHeader</resourceUri>
+    </DataSource>
+    <DataSource id="CurrencyConversionHelper" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.hba.ecc/calculationviews/CurrencyConversionHelper</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Filter_Header" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="CompanyCodeCurrency"/>
+        <viewAttribute id="PurchasingDocumentOrderDate"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PurchasingDocumentHeader">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="PurchasingDocumentOrderDate"/>
+      </input>
+      <filter>&quot;Currency&quot; !=&quot;CompanyCodeCurrency&quot;</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Conversion_Factors" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="SourceCurrency"/>
+        <viewAttribute id="TargetCurrency"/>
+        <viewAttribute id="ValidityStartDate_1"/>
+        <viewAttribute id="ValidToDate_1"/>
+        <viewAttribute id="ConversionFactor"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CurrencyConversionHelper">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SourceCurrency" source="SourceCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TargetCurrency" source="TargetCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate_1" source="ValidityStartDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidToDate_1" source="ValidToDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ConversionFactor" source="ConversionFactor"/>
+      </input>
+      <filter>&quot;ConversionFactor&quot; !='1'</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient" keepFlag="true"/>
+        <viewAttribute id="Currency" keepFlag="true"/>
+        <viewAttribute id="CompanyCodeCurrency" keepFlag="true"/>
+        <viewAttribute id="PurchasingDocumentOrderDate"/>
+        <viewAttribute aggregationType="count" id="PurchasingDocumentOrderDate_1"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Filter_Header">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="PurchasingDocumentOrderDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate_1" source="PurchasingDocumentOrderDate"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="FactorsWithOrderDates" cardinality="C1_N" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ConversionFactor"/>
+        <viewAttribute id="PurchasingDocumentOrderDate"/>
+        <viewAttribute id="CompanyCodeCurrency"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="ValidityStartDate_1"/>
+        <viewAttribute id="ValidToDate_1"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="ValidityStartDate_2" expressionLanguage="COLUMN_ENGINE">
+          <formula>if((0 = &quot;ValidityStartDate_1&quot;),date(string(&quot;ValidityStartDate_1&quot;)),date('0001-01-01'))</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="ValidToDate_2" expressionLanguage="COLUMN_ENGINE">
+          <formula>if((999999998 = &quot;ValidToDate_1&quot;),date(string(&quot;ValidToDate_1&quot;)),date('9999-12-31'))&#xD;
+</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Aggregation_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="PurchasingDocumentOrderDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+      </input>
+      <input node="#Conversion_Factors">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ConversionFactor" source="ConversionFactor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate_1" source="ValidityStartDate_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidToDate_1" source="ValidToDate_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="SourceCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="TargetCurrency"/>
+      </input>
+      <joinAttribute name="SAPClient"/>
+      <joinAttribute name="Currency"/>
+      <joinAttribute name="CompanyCodeCurrency"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="FilterWrongDates" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SAPClient"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="CompanyCodeCurrency"/>
+        <viewAttribute id="ConversionFactor"/>
+        <viewAttribute id="PurchasingDocumentOrderDate"/>
+        <viewAttribute id="ValidityStartDate_2"/>
+        <viewAttribute id="ValidToDate_2"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#FactorsWithOrderDates">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SAPClient" source="SAPClient"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ConversionFactor" source="ConversionFactor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentOrderDate" source="PurchasingDocumentOrderDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate_2" source="ValidityStartDate_2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ValidToDate_2" source="ValidToDate_2"/>
+      </input>
+      <filter>(&quot;ValidityStartDate_2&quot; &lt;=&quot;PurchasingDocumentOrderDate&quot;) and (&quot;PurchasingDocumentOrderDate&quot; &lt;&quot;ValidToDate_2&quot;)</filter>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="FilterWrongDates">
+    <descriptions/>
+    <attributes>
+      <attribute id="SAPClient" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SAP Client"/>
+        <keyMapping columnObjectName="FilterWrongDates" columnName="SAPClient"/>
+      </attribute>
+      <attribute id="Currency" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency"/>
+        <keyMapping columnObjectName="FilterWrongDates" columnName="Currency"/>
+      </attribute>
+      <attribute id="CompanyCodeCurrency" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code Currency"/>
+        <keyMapping columnObjectName="FilterWrongDates" columnName="CompanyCodeCurrency"/>
+      </attribute>
+      <attribute id="ConversionFactor" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ConversionFactor"/>
+        <keyMapping columnObjectName="FilterWrongDates" columnName="ConversionFactor"/>
+      </attribute>
+      <attribute id="ConversionDate" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchasing Document Order Date"/>
+        <keyMapping columnObjectName="FilterWrongDates" columnName="PurchasingDocumentOrderDate"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Filter_Header" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="417"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Conversion_Factors" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="339"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="339"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="FactorsWithOrderDates" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="243"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="FilterWrongDates" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

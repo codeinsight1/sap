@@ -1,0 +1,43 @@
+service namespace "salesmapAPF1d2.webapp.services" {
+
+   
+    "_SYS_BIC"."salesmapAPF1d2.webapp.models/REGION_SALES_BP_AGGR" as "BPSummary"
+    with ("PARTNERID", "COMPANYNAME", "LEGALFORM", "GROSSAMOUNT", "CURRENCY", "COUNTRY")
+    keys generate local "ID"
+    aggregates always (SUM of "GROSSAMOUNT");
+   
+    "_SYS_BIC"."salesmapAPF1d2.webapp.models/BPSalesByYearMock" as "NewBPSalesByYear"
+    with ("CompanyCode", "COMPANYNAME", "LEGALFORM", "GROSSAMOUNT", "COUNTRY", "YEAR_OF_SALE")
+    keys generate local "ID"
+    aggregates always (SUM of "GROSSAMOUNT"); 
+   
+    "_SYS_BIC"."salesmapAPF1d2.webapp.models/BP_WCA_Mock" as "CompanyCodeQuery"
+    with ( 
+     "SAPClient",
+     "CompanyCode",
+     "CompanyCodeName",
+     "Country",
+     "Currency",
+     "Language",
+     "ChartOfAccounts",
+     "FiscalYearVariant",
+     "Company",
+     "CountryChartOfAccounts",
+     "CreditControlArea",
+     "CityName",
+     "CountryName",
+     "CurrencyShortName" )
+     keys generate local "ID"
+    aggregates always  (MIN of "CountryName");
+
+}
+
+annotations {
+
+   enable OData4SAP;
+
+}
+
+settings {
+    metadata cache-control "max-age= 604800";
+}

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="PRODUCT_SALES" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="PRODUCT_SALES_2"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="34"/>
+  <dataSources>
+    <DataSource id="REGION_PRODUCT" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/salesmapAPF1d2.webapp.models/calculationviews/REGION_PRODUCT</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SALESORDERID"/>
+        <viewAttribute id="GROSSAMOUNT"/>
+        <viewAttribute id="CURRENCY"/>
+        <viewAttribute id="SALESORDERITEM"/>
+        <viewAttribute id="QUANTITYUNIT"/>
+        <viewAttribute id="PRODUCT_PRODUCTID"/>
+        <viewAttribute id="QUANTITY"/>
+        <viewAttribute id="HISTORY_CREATEDAT"/>
+        <viewAttribute id="COMPANYNAME"/>
+        <viewAttribute id="LEGALFORM"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="LATITUDE"/>
+        <viewAttribute id="LONGITUDE"/>
+        <viewAttribute id="POSTALCODE"/>
+        <viewAttribute id="STREET"/>
+        <viewAttribute id="BUILLDING"/>
+        <viewAttribute id="COUNTRY"/>
+        <viewAttribute id="REGION"/>
+        <viewAttribute id="PRODUCT_DETAILTXT"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="VARCHAR" id="YEAR_OF_SALE" length="4" expressionLanguage="COLUMN_ENGINE">
+          <formula>midstr(string(&quot;HISTORY_CREATEDAT&quot;),0,4)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#REGION_PRODUCT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID" source="SALESORDERID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="GROSSAMOUNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERITEM" source="SALESORDERITEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITYUNIT" source="QUANTITYUNIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_PRODUCTID" source="PRODUCT_PRODUCTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDAT" source="HISTORY_CREATEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMPANYNAME" source="COMPANYNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGALFORM" source="LEGALFORM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POSTALCODE" source="POSTALCODE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STREET" source="STREET"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUILLDING" source="BUILLDING"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_DETAILTXT" source="PRODUCT_DETAILTXT"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="SALESORDERID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SALESORDERID"/>
+        <keyMapping columnObjectName="Projection_2" columnName="SALESORDERID"/>
+      </attribute>
+      <attribute id="SALESORDERID_1" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SALESORDERID_1"/>
+        <keyMapping columnObjectName="Projection_2" columnName="SALESORDERID"/>
+      </attribute>
+      <attribute id="GROSSAMOUNT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GROSSAMOUNT"/>
+        <keyMapping columnObjectName="Projection_2" columnName="GROSSAMOUNT"/>
+      </attribute>
+      <attribute id="CURRENCY" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CURRENCY"/>
+        <keyMapping columnObjectName="Projection_2" columnName="CURRENCY"/>
+      </attribute>
+      <attribute id="SALESORDERITEM" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SALESORDERITEM"/>
+        <keyMapping columnObjectName="Projection_2" columnName="SALESORDERITEM"/>
+      </attribute>
+      <attribute id="QUANTITYUNIT" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="QUANTITYUNIT"/>
+        <keyMapping columnObjectName="Projection_2" columnName="QUANTITYUNIT"/>
+      </attribute>
+      <attribute id="PRODUCT_PRODUCTID" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PRODUCT_PRODUCTID"/>
+        <keyMapping columnObjectName="Projection_2" columnName="PRODUCT_PRODUCTID"/>
+      </attribute>
+      <attribute id="QUANTITY" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="QUANTITY"/>
+        <keyMapping columnObjectName="Projection_2" columnName="QUANTITY"/>
+      </attribute>
+      <attribute id="HISTORY_CREATEDAT" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HISTORY_CREATEDAT"/>
+        <keyMapping columnObjectName="Projection_2" columnName="HISTORY_CREATEDAT"/>
+      </attribute>
+      <attribute id="COMPANYNAME" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COMPANYNAME"/>
+        <keyMapping columnObjectName="Projection_2" columnName="COMPANYNAME"/>
+      </attribute>
+      <attribute id="LEGALFORM" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEGALFORM"/>
+        <keyMapping columnObjectName="Projection_2" columnName="LEGALFORM"/>
+      </attribute>
+      <attribute id="CITY" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CITY"/>
+        <keyMapping columnObjectName="Projection_2" columnName="CITY"/>
+      </attribute>
+      <attribute id="LATITUDE" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LATITUDE"/>
+        <keyMapping columnObjectName="Projection_2" columnName="LATITUDE"/>
+      </attribute>
+      <attribute id="LONGITUDE" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LONGITUDE"/>
+        <keyMapping columnObjectName="Projection_2" columnName="LONGITUDE"/>
+      </attribute>
+      <attribute id="POSTALCODE" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="POSTALCODE"/>
+        <keyMapping columnObjectName="Projection_2" columnName="POSTALCODE"/>
+      </attribute>
+      <attribute id="STREET" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STREET"/>
+        <keyMapping columnObjectName="Projection_2" columnName="STREET"/>
+      </attribute>
+      <attribute id="BUILLDING" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BUILLDING"/>
+        <keyMapping columnObjectName="Projection_2" columnName="BUILLDING"/>
+      </attribute>
+      <attribute id="COUNTRY" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COUNTRY"/>
+        <keyMapping columnObjectName="Projection_2" columnName="COUNTRY"/>
+      </attribute>
+      <attribute id="REGION" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="REGION"/>
+        <keyMapping columnObjectName="Projection_2" columnName="REGION"/>
+      </attribute>
+      <attribute id="PRODUCT_DETAILTXT" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Document Item Text"/>
+        <keyMapping columnObjectName="Projection_2" columnName="PRODUCT_DETAILTXT"/>
+      </attribute>
+      <attribute id="YEAR_OF_SALE" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR_OF_SALE"/>
+        <keyMapping columnObjectName="Projection_2" columnName="YEAR_OF_SALE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="50" y="220"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
